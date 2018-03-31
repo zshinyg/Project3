@@ -10,10 +10,11 @@ namespace Completed
 	public class LevelGenerator : MonoBehaviour
 	{
 
-		public int columns = 8;                                         //Number of columns in our game board.
-		public int rows = 8;                                            //Number of rows in our game board.
+		public int columns = 100;                                         //Number of columns in our game board.
+		public int rows = 100;                                            //Number of rows in our game board.
 		public GameObject[] floorTiles;                                 //Array of floor prefabs.
-		public GameObject[] wallTiles;                                  //Array of wall prefabs.
+		public GameObject[] wallTiles; 									//Array of wall prefabs.
+		public int myScale = 1;
 
 		private Transform boardHolder;                                  //A variable to store a reference to the transform of our Board object.
 		private List <Vector3> gridPositions = new List <Vector3> ();   //A list of possible locations to place tiles.
@@ -56,6 +57,8 @@ namespace Completed
 					if(x == -1 || x == columns || y == -1 || y == rows)
 						toInstantiate = wallTiles [Random.Range (0, wallTiles.Length)];
 
+
+					boardHolder.localScale = new Vector3 (myScale, myScale, myScale);
 					//Instantiate the GameObject instance using the prefab chosen for toInstantiate at the Vector3 corresponding to current grid position in loop, cast it to GameObject.
 					GameObject instance = Instantiate (toInstantiate, new Vector3 (x, y, 0f), Quaternion.identity) as GameObject;
 
