@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
         {
             Instantiate(levelGenerator);
         }
-        //levelGenerator = gameObject.GetComponent<LevelGenerator>();
+
         
         levelGenerator.SetupScene(level);
 

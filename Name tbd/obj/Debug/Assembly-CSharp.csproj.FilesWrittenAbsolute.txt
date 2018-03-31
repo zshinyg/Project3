@@ -1,3 +1,7 @@
+/Users/cgatton/Documents/GitHub/Project3/Name tbd/Temp/bin/Debug/Assembly-CSharp.dll.mdb
+/Users/cgatton/Documents/GitHub/Project3/Name tbd/Temp/bin/Debug/Assembly-CSharp.dll
+/Users/cgatton/Documents/GitHub/Project3/Name tbd/obj/Debug/Assembly-CSharp.dll
+/Users/cgatton/Documents/GitHub/Project3/Name tbd/obj/Debug/Assembly-CSharp.dll.mdb
 /Users/cgatton/Documents/GitHub/Project3/Name tbd/Temp/bin/Debug/UnityEngine.dll
 /Users/cgatton/Documents/GitHub/Project3/Name tbd/Temp/bin/Debug/UnityEditor.dll
 /Users/cgatton/Documents/GitHub/Project3/Name tbd/Temp/bin/Debug/UnityEngine.UIAutomation.dll
@@ -23,7 +27,3 @@
 /Users/cgatton/Documents/GitHub/Project3/Name tbd/Temp/bin/Debug/Unity.CecilTools.dll
 /Users/cgatton/Documents/GitHub/Project3/Name tbd/Temp/bin/Debug/Unity.Cecil.Pdb.dll
 /Users/cgatton/Documents/GitHub/Project3/Name tbd/Temp/bin/Debug/Unity.Cecil.Mdb.dll
-/Users/cgatton/Documents/GitHub/Project3/Name tbd/Temp/bin/Debug/Assembly-CSharp.dll.mdb
-/Users/cgatton/Documents/GitHub/Project3/Name tbd/Temp/bin/Debug/Assembly-CSharp.dll
-/Users/cgatton/Documents/GitHub/Project3/Name tbd/obj/Debug/Assembly-CSharp.dll
-/Users/cgatton/Documents/GitHub/Project3/Name tbd/obj/Debug/Assembly-CSharp.dll.mdb
