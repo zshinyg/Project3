@@ -27,6 +27,7 @@ namespace Completed
 		{
 			//Clear our list gridPositions.
 			gridPositions.Clear ();
+			floorPositions.Clear ();
 
 			//Loop through x axis (columns).
 			for(int x = 1; x < columns; x++)
@@ -47,14 +48,15 @@ namespace Completed
 
 			//Vector3 that chooses random position to start on map
 			Vector3 currentPosition = gridPositions[Random.Range(0,gridPositions.Count)];	//this is our starting position
-			gridPositions.Remove(currentPosition);											//Remove this from gridPosition
 			Vector3 nextPosition;
 			floorPositions.Add (currentPosition);
+			gridPositions.Remove(currentPosition);											//Remove this from gridPosition
 
 			Direction nextDirection;
 
 
 			for (int i = 0; i < numFloorTiles; i++) {
+				Debug.Log ("numFloorTiles: " + numFloorTiles);
 				nextDirection = (Direction)Random.Range (0, 3);
 				nextPosition = currentPosition;
 
@@ -98,8 +100,6 @@ namespace Completed
 		bool CheckNextPos(Vector3 nextPos) {
 
 			if (nextPos.x == 0 || nextPos.x == columns || nextPos.y == 0 || nextPos.y == rows) {
-				return false;
-			} else if (floorPositions.Contains (nextPos)) {
 				return false;
 			} else {
 				return true;
@@ -164,6 +164,9 @@ namespace Completed
 			this.FloorSetup ();
 
 			this.wallSetup ();
+
+			Debug.Log ("FloorPos: "+floorPositions.Count);
+			Debug.Log ("GirdPos: "+gridPositions.Count);
 
 		}
 	}
