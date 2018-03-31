@@ -10,19 +10,13 @@ namespace Completed
 	public class LevelGenerator : MonoBehaviour
 	{
 
-
-
 		public int columns = 8;                                         //Number of columns in our game board.
 		public int rows = 8;                                            //Number of rows in our game board.
 		public GameObject[] floorTiles;                                 //Array of floor prefabs.
 		public GameObject[] wallTiles;                                  //Array of wall prefabs.
 
-
-
-
 		private Transform boardHolder;                                  //A variable to store a reference to the transform of our Board object.
 		private List <Vector3> gridPositions = new List <Vector3> ();   //A list of possible locations to place tiles.
-
 
 		//Clears our list gridPositions and prepares it to generate a new board.
 		void InitialiseList ()
@@ -44,7 +38,7 @@ namespace Completed
 
 
 		//Sets up the outer walls and floor (background) of the game board.
-		void BoardSetup ()
+		void BoardSetup()
 		{
 			//Instantiate Board and set boardHolder to its transform.
 			boardHolder = new GameObject ("Board").transform;
@@ -63,8 +57,7 @@ namespace Completed
 						toInstantiate = wallTiles [Random.Range (0, wallTiles.Length)];
 
 					//Instantiate the GameObject instance using the prefab chosen for toInstantiate at the Vector3 corresponding to current grid position in loop, cast it to GameObject.
-					GameObject instance =
-						Instantiate (toInstantiate, new Vector3 (x, y, 0f), Quaternion.identity) as GameObject;
+					GameObject instance = Instantiate (toInstantiate, new Vector3 (x, y, 0f), Quaternion.identity) as GameObject;
 
 					//Set the parent of our newly instantiated object instance to boardHolder, this is just organizational to avoid cluttering hierarchy.
 					instance.transform.SetParent (boardHolder);
@@ -73,35 +66,18 @@ namespace Completed
 		}
 
 
-		//RandomPosition returns a random position from our list gridPositions.
-		Vector3 RandomPosition ()
-		{
-			//Declare an integer randomIndex, set it's value to a random number between 0 and the count of items in our List gridPositions.
-			int randomIndex = Random.Range (0, gridPositions.Count);
-
-			//Declare a variable of type Vector3 called randomPosition, set it's value to the entry at randomIndex from our List gridPositions.
-			Vector3 randomPosition = gridPositions[randomIndex];
-
-			//Remove the entry at randomIndex from the list so that it can't be re-used.
-			gridPositions.RemoveAt (randomIndex);
-
-			//Return the randomly selected Vector3 position.
-			return randomPosition;
-		}
-
-
-
-
+	
 		//SetupScene initializes our level and calls the previous functions to lay out the game board
 		public void SetupScene (int level)
 		{
+            Debug.Log("Inside SetupScene");
+
 			//Creates the outer walls and floor.
-			BoardSetup ();
+			this.BoardSetup();
 
 			//Reset our list of gridpositions.
-			InitialiseList ();
+			this.InitialiseList();
 
-			//Instantiate a random number of wall tiles based on minimum and maximum, at randomized positions.
 		}
 	}
 }
