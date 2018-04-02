@@ -10,12 +10,12 @@ namespace Completed
 	public class LevelGenerator : MonoBehaviour
 	{
 
-		public int columns = 20;                                         //Number of columns in our game board.
-		public int rows = 20;                                            //Number of rows in our game board.
+		public int columns;                                       //Number of columns in our game board.
+		public int rows;                                            //Number of rows in our game board.
 		public GameObject[] floorTiles;                                 //Array of floor prefabs.
 		public GameObject[] wallTiles; 									//Array of wall prefabs.
 		public int myScale = 1;
-		public int numFloorTiles = 20;									//Number of tiles that will be floor tiles.
+		public int numFloorTiles;									//Number of tiles that will be floor tiles.
 
 		private Transform boardHolder;                                  //A variable to store a reference to the transform of our Board object.
 		private List <Vector3> gridPositions = new List <Vector3> ();   //A list of possible locations to place tiles.
@@ -39,8 +39,32 @@ namespace Completed
 					gridPositions.Add (new Vector3(x, y, 0f));
 				}
 			}
-			Debug.Log ("GridPosCount: "+gridPositions.Count);
-			Debug.Log ("FloorPosCount: "+floorPositions.Count);
+			//Debug.Log ("GridPosCount: "+gridPositions.Count);
+			//Debug.Log ("FloorPosCount: "+floorPositions.Count);
+		}
+
+
+		Vector3 moveNextPos(Vector3 nextPos, Direction nextDir){
+			switch (nextDir) {
+
+
+			case Direction.up: 
+				nextPos.y++;
+				break;
+
+			case Direction.right:
+				nextPos.x++;
+				break;
+
+			case Direction.down:
+				nextPos.y--;
+				break;
+
+			case Direction.left:
+				nextPos.x--;
+				break;
+			}
+			return nextPos;
 		}
 
 
@@ -59,71 +83,59 @@ namespace Completed
 
 
 			for (int i = 0; i < numFloorTiles; i++) {
-				nextDirection = (Direction)Random.Range (0, 3);
+				nextDirection = (Direction)Random.Range (0, 3);								//Select a random direction
 				nextPosition = currentPosition;
+				nextPosition = moveNextPos (nextPosition, nextDirection);					//set the next position
 
-
-				switch(nextDirection) {
-
-
-				case Direction.up: 
-					nextPosition.y++;
-					break;
-
-				case Direction.right:
-					nextPosition.x++;
-					break;
-
-				case Direction.down:
-					nextPosition.y--;
-					break;
-
-				case Direction.left:
-					nextPosition.x--;
-					break;
-
-				}
-
-
+				//Loops to check all directions for possible invalid position
 				for (int j = 0; j <= 3; j++) {
 					if (!CheckNextPos(nextPosition)) {
 
+						Debug.Log ("Next Pos: " + nextPosition.x + "," + nextPosition.y);
 						switch (nextDirection) {
 
-
 						case Direction.up: 
+							//Move Right
 							Debug.Log ("Check up");
 							nextPosition.y--;
 							nextPosition.x++;
+							nextDirection++;
 							break;
 
 						case Direction.right:
+							//Move Down
 							Debug.Log ("Check right");
 							nextPosition.x--;
 							nextPosition.y--;
+							nextDirection++;
 							break;
 
 						case Direction.down:
+							//Move Left
 							Debug.Log ("Check down");
 							nextPosition.y++;
 							nextPosition.x--;
+							nextDirection++;
 							break;
 
 						case Direction.left:
+							//Move up
 							Debug.Log ("Check left");
 							nextPosition.x++;
 							nextPosition.y++;
+							nextDirection = Direction.up;
 							break;
 
 						}
 						if (j == 3) {
+							//We are stuck
 							break;
-							TODO: fix this
 						}
 					} else {
+						//Successfull. Place Floor.
 						currentPosition = nextPosition;
 						floorPositions.Add (currentPosition);
-						Debug.Log ("Placed Floor");
+						Debug.Log ("Placed Floor at: " + currentPosition.x + ", " +currentPosition.y);
 						gridPositions.Remove (currentPosition);
 						break;
 					}
@@ -131,27 +143,46 @@ namespace Completed
 			}
 		}
 
-
-		//Checks if the next position is a valid tile spot
-		bool CheckNextPos(Vector3 nextPos) {
-
-			if (nextPos.x == 0 || nextPos.x == columns  || nextPos.y == 0 || nextPos.y == rows) {
+		bool CheckForBorder(Vector3 nextPos){
+			if (nextPos.x == 0 || nextPos.x == columns || nextPos.y == 0 || nextPos.y == rows) {
 				Debug.Log ("Hit border");
 				return false;
-			} else if(floorPositions.Contains(nextPos)) {
-				Debug.Log ("Contains floor");
-				return false;
 			} else {
-				Debug.Log ("next Pos is clear");
 				return true;
 			}
 
 		}
 
+		//Checks if the next position is a valid tile spot
+		bool CheckNextPos(Vector3 nextPos) {
 
-		void wallSetup() {
+			//Checks if next position is a border
+			if (nextPos.x == 0 || nextPos.x == columns  || nextPos.y == 0 || nextPos.y == rows) {
+				Debug.Log ("Hit border");
+				return false;
+			} else if(floorPositions.Contains(nextPos)) {			//checks if next position contains a floor
+				//Debug.Log ("Contains floor");
+				return false;
+			} else {												//next position is clear
+				//Debug.Log ("next Pos is clear");
+				return true;
+			}
 
-			GameObject toInstantiate = wallTiles[Random.Range (0,floorTiles.Length)];
+		}
+			
+
+		//Place the foor tiles
+		void placeFloor(){
+			GameObject toInstantiate = floorTiles[Random.Range (0,floorTiles.Length)];
+			for (int i = 0; i < floorPositions.Count; i++) {
+				GameObject instance = Instantiate (toInstantiate, floorPositions [i], Quaternion.identity) as GameObject;
+				instance.transform.SetParent (boardHolder);
+			}
+		}
+
+		//Place the wall tiles
+		void placeWall() {
+			GameObject toInstantiate = wallTiles[Random.Range (0,wallTiles.Length)];
 			for(int i = 0; i < gridPositions.Count; i++){
 				GameObject instance = Instantiate (toInstantiate, gridPositions[i], Quaternion.identity) as GameObject;
 				instance.transform.SetParent (boardHolder);
@@ -160,7 +191,7 @@ namespace Completed
 		}
 
 
-		//Sets up the outer walls and floor (background) of the game board.
+		//Sets up the outer walls 
 		void BoardSetup()
 		{
 			//Instantiate Board and set boardHolder to its transform.
@@ -196,20 +227,13 @@ namespace Completed
 		//SetupScene initializes our level and calls the previous functions to lay out the game board
 		public void SetupScene (int level)
 		{
-
-
 			//Creates the outer walls and floor.
 			this.BoardSetup();
-
-
-
 			//Reset our list of gridpositions.
 			this.InitialiseList();
-
 			this.FloorSetup ();
-
-			this.wallSetup ();
-
+			placeFloor ();
+			this.placeWall ();
 			Debug.Log ("FloorPos: "+floorPositions.Count);
 			Debug.Log ("GridPos: "+gridPositions.Count);
 
