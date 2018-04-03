@@ -54,6 +54,7 @@
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\LevelGenerator.cs" />
      <Compile Include="Assets\Scripts\Loader.cs" />
+     <Compile Include="Assets\Scripts\Map.cs" />
  <Reference Include="UnityEngine.UIAutomation">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UIAutomation/UnityEngine.UIAutomation.dll</HintPath>
  </Reference>

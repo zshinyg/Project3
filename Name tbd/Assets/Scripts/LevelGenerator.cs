@@ -4,7 +4,6 @@ using System.Collections.Generic;       //Allows us to use Lists.
 using Random = UnityEngine.Random;      //Tells Random to use the Unity Engine random number generator.
 
 namespace Completed
-
 {
 
 	public class LevelGenerator : MonoBehaviour
@@ -14,13 +13,12 @@ namespace Completed
 		public int rows;                                            //Number of rows in our game board.
 		public GameObject[] floorTiles;                                 //Array of floor prefabs.
 		public GameObject[] wallTiles; 									//Array of wall prefabs.
-		public int myScale = 1;
-		public int numFloorTiles;									//Number of tiles that will be floor tiles.
-
+		public int numFloorTiles = 5;									//Number of tiles that will be floor tiles.
 		private Transform boardHolder;                                  //A variable to store a reference to the transform of our Board object.
 		private List <Vector3> gridPositions = new List <Vector3> ();   //A list of possible locations to place tiles.
 		private List <Vector3> floorPositions = new List <Vector3> ();  //A list of possible tiles that are floors.
 		private enum Direction {up, right, down, left}; 				//enum used for random map generation
+		public Map map;
 
 		//Clears our list gridPositions and prepares it to generate a new board.
 		void InitialiseList ()
@@ -46,7 +44,6 @@ namespace Completed
 
 		Vector3 moveNextPos(Vector3 nextPos, Direction nextDir){
 			switch (nextDir) {
-
 
 			case Direction.up: 
 				nextPos.y++;
@@ -76,103 +73,62 @@ namespace Completed
 			Vector3 currentPosition = gridPositions[Random.Range(0,gridPositions.Count)];	//this is our starting position
 			Vector3 nextPosition;
 			floorPositions.Add (currentPosition);
-			Debug.Log (currentPosition.x + ", "+ currentPosition.y);
 			gridPositions.Remove(currentPosition);											//Remove this from gridPosition
-
 			Direction nextDirection;
-
 
 			for (int i = 0; i < numFloorTiles; i++) {
 				nextDirection = (Direction)Random.Range (0, 3);								//Select a random direction
-				nextPosition = currentPosition;
-				nextPosition = moveNextPos (nextPosition, nextDirection);					//set the next position
-
-				//Loops to check all directions for possible invalid position
-				for (int j = 0; j <= 3; j++) {
-					if (!CheckNextPos(nextPosition)) {
-
-						Debug.Log ("Next Pos: " + nextPosition.x + "," + nextPosition.y);
-						switch (nextDirection) {
-
-						case Direction.up: 
-							//Move Right
-							Debug.Log ("Check up");
-							nextPosition.y--;
-							nextPosition.x++;
-							nextDirection++;
-							break;
-
-						case Direction.right:
-							//Move Down
-							Debug.Log ("Check right");
-							nextPosition.x--;
-							nextPosition.y--;
-							nextDirection++;
-							break;
-
-						case Direction.down:
-							//Move Left
-							Debug.Log ("Check down");
-							nextPosition.y++;
-							nextPosition.x--;
-							nextDirection++;
-							break;
-
-						case Direction.left:
-							//Move up
-							Debug.Log ("Check left");
-							nextPosition.x++;
-							nextPosition.y++;
-							nextDirection = Direction.up;
-							break;
-
-						}
-						if (j == 3) {
-							//We are stuck
-							break;
-						}
+				nextPosition = moveNextPos (currentPosition, nextDirection);					//set the next position
+				Debug.Log("Before while loop");
+				while (isBorder (nextPosition)) {
+					Debug.Log ("inside While");
+					if (nextDirection == Direction.left) {
+						nextDirection = Direction.up;
 					} else {
-						//Successfull. Place Floor.
-						currentPosition = nextPosition;
-						floorPositions.Add (currentPosition);
-						Debug.Log ("Placed Floor at: " + currentPosition.x + ", " +currentPosition.y);
-						gridPositions.Remove (currentPosition);
-						break;
+						nextDirection++;
 					}
+					nextPosition = moveNextPos(currentPosition,nextDirection);
 				}
+				if (isFloor (nextPosition)) {
+					Debug.Log("in if");
+					numFloorTiles++;
+				} else {
+					Debug.Log("in ");
+					floorPositions.Add (nextPosition);
+					gridPositions.Remove (nextPosition);
+				}
+				//Successfull. Place Floor.
+				currentPosition = nextPosition;
 			}
 		}
 
-		bool CheckForBorder(Vector3 nextPos){
+
+		//Checks if tile is a border
+		bool isBorder(Vector3 nextPos){
 			if (nextPos.x == 0 || nextPos.x == columns || nextPos.y == 0 || nextPos.y == rows) {
 				Debug.Log ("Hit border");
-				return false;
-			} else {
 				return true;
+			} else {
+				return false;
 			}
 
 		}
 
-		//Checks if the next position is a valid tile spot
-		bool CheckNextPos(Vector3 nextPos) {
 
-			//Checks if next position is a border
-			if (nextPos.x == 0 || nextPos.x == columns  || nextPos.y == 0 || nextPos.y == rows) {
-				Debug.Log ("Hit border");
-				return false;
-			} else if(floorPositions.Contains(nextPos)) {			//checks if next position contains a floor
+		//Checks if nextPos is a floor tile.
+		bool isFloor(Vector3 nextPos){
+			if(floorPositions.Contains(nextPos)) {			//checks if next position contains a floor
 				//Debug.Log ("Contains floor");
-				return false;
+				return true;
 			} else {												//next position is clear
 				//Debug.Log ("next Pos is clear");
-				return true;
+				return false;
 			}
-
 		}
 			
 
 		//Place the foor tiles
-		void placeFloor(){
+		void placeFloors(){
 			GameObject toInstantiate = floorTiles[Random.Range (0,floorTiles.Length)];
 			for (int i = 0; i < floorPositions.Count; i++) {
 				GameObject instance = Instantiate (toInstantiate, floorPositions [i], Quaternion.identity) as GameObject;
@@ -181,12 +137,11 @@ namespace Completed
 		}
 
 		//Place the wall tiles
-		void placeWall() {
+		void placeWalls() {
 			GameObject toInstantiate = wallTiles[Random.Range (0,wallTiles.Length)];
 			for(int i = 0; i < gridPositions.Count; i++){
 				GameObject instance = Instantiate (toInstantiate, gridPositions[i], Quaternion.identity) as GameObject;
 				instance.transform.SetParent (boardHolder);
-
 			}
 		}
 
@@ -209,34 +164,38 @@ namespace Completed
 					//Check if we current position is at board edge, if so choose a random outer wall prefab from our array of outer wall tiles.
 					if (x == 0 || x == columns || y == 0 || y == rows) {
 						toInstantiate = wallTiles [Random.Range (0, wallTiles.Length)];
-						boardHolder.localScale = new Vector3 (myScale, myScale, myScale);
 						//Instantiate the GameObject instance using the prefab chosen for toInstantiate at the Vector3 corresponding to current grid position in loop, cast it to GameObject.
 						GameObject instance = Instantiate (toInstantiate, new Vector3 (x, y, 0f), Quaternion.identity) as GameObject;
 
 						//Set the parent of our newly instantiated object instance to boardHolder, this is just organizational to avoid cluttering hierarchy.
 						instance.transform.SetParent (boardHolder);
 					}
-
-
 				}
 			}
 		}
 
 
-	
 		//SetupScene initializes our level and calls the previous functions to lay out the game board
 		public void SetupScene (int level)
 		{
 			//Creates the outer walls and floor.
+			numFloorTiles = 100;
 			this.BoardSetup();
 			//Reset our list of gridpositions.
 			this.InitialiseList();
 			this.FloorSetup ();
-			placeFloor ();
-			this.placeWall ();
+			this.placeFloors ();
+			this.placeWalls ();
 			Debug.Log ("FloorPos: "+floorPositions.Count);
 			Debug.Log ("GridPos: "+gridPositions.Count);
+		}
 
+
+		void Awake(){
+			if (!(GameObject.Find("Map")))
+			{
+				Instantiate(map);
+			}
 		}
 	}
 }
