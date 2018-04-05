@@ -15,6 +15,12 @@ public class Map : MonoBehaviour {
 	private Transform boardHolder;   								//A variable to store a reference to the transform of our Board object.
 
 
+	public Transform GetBoardHolder(){
+		return boardHolder;
+	}
+
+
+
 	//Clears our list gridPositions and prepares it to generate a new board.
 	void InitialiseList ()
 	{
@@ -36,8 +42,9 @@ public class Map : MonoBehaviour {
 
 	//Place the foor tiles
 	public void placeFloors(){
-		GameObject toInstantiate = floorTiles[Random.Range (0,floorTiles.Length)];
+		GameObject toInstantiate;
 		for (int i = 0; i < floorPositions.Count; i++) {
+			toInstantiate = floorTiles[Random.Range (0,floorTiles.Length)];
 			GameObject instance = Instantiate (toInstantiate, floorPositions [i], Quaternion.identity) as GameObject;
 			instance.transform.SetParent (boardHolder);
 		}
@@ -45,8 +52,9 @@ public class Map : MonoBehaviour {
 
 	//Place the wall tiles
 	public void placeWalls() {
-		GameObject toInstantiate = wallTiles[Random.Range (0,wallTiles.Length)];
+		GameObject toInstantiate;
 		for(int i = 0; i < gridPositions.Count; i++){
+			toInstantiate = wallTiles[Random.Range (0,wallTiles.Length)];
 			GameObject instance = Instantiate (toInstantiate, gridPositions[i], Quaternion.identity) as GameObject;
 			instance.transform.SetParent (boardHolder);
 		}

@@ -12,7 +12,8 @@ namespace Completed
 		public int numFloorTiles;									//Number of tiles that will be floor tiles.
 		private enum Direction {up, right, down, left}; 				//enum used for random map generation
 		public Map map;
-
+		public int numItems;
+		public GameObject Item;
 
 
 		Vector3 moveNextPos(Vector3 nextPos, Direction nextDir){
@@ -76,6 +77,19 @@ namespace Completed
 		}
 
 
+		void generateItems(int level){
+			Vector3 itemPos;
+			GameObject toInstantiate = Item;
+
+			numItems = (int)Mathf.Log (level, 2);
+			for (int i = 0; i < numItems; i++) {
+				itemPos = map.floorPositions [Random.Range (0, map.floorPositions.Count)];
+				GameObject instance = Instantiate (toInstantiate, itemPos, Quaternion.identity) as GameObject;
+				instance.transform.SetParent (map.GetBoardHolder());
+			}
+		}
+
+
 		//Checks if tile is a border
 		bool isBorder(Vector3 nextPos){
 			if (nextPos.x == 0 || nextPos.x == map.columns || nextPos.y == 0 || nextPos.y == map.rows) {
@@ -103,14 +117,19 @@ namespace Completed
 		//SetupScene initializes our level and calls the previous functions to lay out the game board
 		public void SetupScene (int level)
 		{
-			int columns = 5 * level;
-			int rows = 5 * level;
+			int columns = (int)(0.5 * level) + 5;
+			int rows = (int)(0.5 * level) +5;
+			if (level >= 50) {
+				columns = 30;
+				rows = 30;
+			}
 			//Creates the outer walls and floor.
 			numFloorTiles = (columns *rows)/3;
 			map.MapSetup (columns, rows);
 			this.FloorSetup ();
 			map.placeFloors ();
 			map.placeWalls ();
+			generateItems (level);
 
 		}
 

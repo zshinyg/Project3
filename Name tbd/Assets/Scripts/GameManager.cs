@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
 
 	private Text levelText;
 	private GameObject levelImage;
-	private int level = 2;                                  //Current level number, expressed in game as "Day 1".
+	private int level = 5;                                  //Current level number, expressed in game as "Day 1".
 	private bool doingSetup;
 
 
@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
         levelGenerator.SetupScene(level);
 
     }
+
+	// TODO: create LevelOver function
 
 
 	private void HideLevelImage() {
