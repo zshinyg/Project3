@@ -8,7 +8,7 @@ public class invincibilityItem : IItem
 
     private int durationLength;
 
-    public void Ability(Player player){
+    public void Ability(IPlayer player){
         changeInviciblity(player);
     }
 
@@ -18,7 +18,7 @@ public class invincibilityItem : IItem
         return durationLength;
     }
 
-    private void changeInviciblity(Player player){
+    private void changeInviciblity(IPlayer player){
         player.setInvincibility(true);
     }
 }

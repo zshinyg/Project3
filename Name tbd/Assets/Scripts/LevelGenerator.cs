@@ -13,7 +13,7 @@ namespace Completed
 		private enum Direction {up, right, down, left}; 				//enum used for random map generation
 		public Map map;
 		public int numItems;
-		public GameObject Item;
+		public GameObject[] Items;
 
 
 		Vector3 moveNextPos(Vector3 nextPos, Direction nextDir){
@@ -50,24 +50,23 @@ namespace Completed
 			map.gridPositions.Remove(currentPosition);											//Remove this from gridPosition
 			Direction nextDirection;
 
+			Debug.Log (currentPosition.x +", " + currentPosition.y);
+
 			for (int i = 0; i < numFloorTiles; i++) {
 				nextDirection = (Direction)Random.Range (0, 3);								//Select a random direction
 				nextPosition = moveNextPos (currentPosition, nextDirection);					//set the next position
-				Debug.Log("Before while loop");
 				while (isBorder (nextPosition)) {
-					Debug.Log ("inside While");
-					if (nextDirection == Direction.left) {
-						nextDirection = Direction.up;
+					if (nextDirection == Direction.up) {
+						nextDirection = Direction.left;
 					} else {
-						nextDirection++;
+						nextDirection--;
 					}
 					nextPosition = moveNextPos(currentPosition,nextDirection);
 				}
 				if (isFloor (nextPosition)) {
-					Debug.Log("in if");
 					numFloorTiles++;
 				} else {
-					Debug.Log("in ");
+
 					map.floorPositions.Add (nextPosition);
 					map.gridPositions.Remove (nextPosition);
 				}
@@ -79,10 +78,11 @@ namespace Completed
 
 		void generateItems(int level){
 			Vector3 itemPos;
-			GameObject toInstantiate = Item;
+			GameObject toInstantiate;
 
 			numItems = (int)Mathf.Log (level, 2);
 			for (int i = 0; i < numItems; i++) {
+				toInstantiate =Items[Random.Range (0,Items.Length)];
 				itemPos = map.floorPositions [Random.Range (0, map.floorPositions.Count)];
 				GameObject instance = Instantiate (toInstantiate, itemPos, Quaternion.identity) as GameObject;
 				instance.transform.SetParent (map.GetBoardHolder());
@@ -93,7 +93,6 @@ namespace Completed
 		//Checks if tile is a border
 		bool isBorder(Vector3 nextPos){
 			if (nextPos.x == 0 || nextPos.x == map.columns || nextPos.y == 0 || nextPos.y == map.rows) {
-				Debug.Log ("Hit border");
 				return true;
 			} else {
 				return false;

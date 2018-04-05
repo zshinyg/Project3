@@ -9,7 +9,7 @@ public class attackItem : IItem
     private float changeToAttack;
     private int durationLength;
 
-    public void Ability(Player player){
+    public void Ability(IPlayer player){
         changeAttack(player);
     }
 
@@ -19,9 +19,9 @@ public class attackItem : IItem
         return durationLength;
     }
 
-    public void changeAttack(Player player){
-        changeToAttack = Random.Rand(3,10);
+    public void changeAttack(IPlayer player){
+        changeToAttack = Random.Range(3,10);
         changeToAttack = changeToAttack/10;
-        player.setAttack(player.getAttack() * (1 + changeAttack));
+		player.setAttack(player.getAttack() * (int)(1 + changeToAttack));
     }
 }

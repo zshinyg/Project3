@@ -77,6 +77,7 @@ public class Map : MonoBehaviour {
 				//Choose a random tile from our array of floor tile prefabs and prepare to instantiate it.
 				GameObject toInstantiate;
 
+
 				//Check if we current position is at board edge, if so choose a random outer wall prefab from our array of outer wall tiles.
 				if (x == 0 || x == columns || y == 0 || y == rows) {
 					toInstantiate = wallTiles [Random.Range (0, wallTiles.Length)];

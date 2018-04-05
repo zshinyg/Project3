@@ -4,11 +4,11 @@ using UnityEngine;
 
 
 
-public calss healthItem : IItem
+public class healthItem : IItem
 {
 
     private int changeToHealth;
-    public void Ability(Player player){
+    public void Ability(IPlayer player){
           
           changeHealth(player);
     }
@@ -17,7 +17,7 @@ public calss healthItem : IItem
         return 0;
     }
 
-    private void changeHealth(Player player){
+    private void changeHealth(IPlayer player){
 
         changeToHealth = Random.Range(-5,5);
         while (changeToHealth == 0){
@@ -25,6 +25,6 @@ public calss healthItem : IItem
         }
 
         changeToHealth = changeToHealth*10;
-        player.setHealth(player.getHealth() + changeToHealth);
+		player.setHealth(player.getHealth() + changeToHealth);
     }
 }
