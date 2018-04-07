@@ -12,4 +12,6 @@ public interface ICharacter{
 
 	void setHealth(int health);
 
+	bool isDead ();
+
 }

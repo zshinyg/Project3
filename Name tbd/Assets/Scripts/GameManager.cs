@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 	public float levelStartDelay = 2f;
 	public static GameManager instance;              //Static instance of GameManager which allows it to be accessed by any other script.
 	public LevelGenerator levelGenerator;    //Store a reference to our BoardManager which will set up the level.
+	public IPlayer mainCharacter;
 
 
 	private Text levelText;
@@ -26,7 +27,7 @@ public class GameManager : MonoBehaviour
         {
             Instantiate(levelGenerator);
         }
-
+		SpawnControlledPlayer ();
 		InitGame ();
         levelGenerator.SetupScene(level);
 
@@ -39,6 +40,15 @@ public class GameManager : MonoBehaviour
 		levelImage.SetActive (false);	
 		doingSetup = false;
 	}
+
+	private void Spawn(){
+	
+	}
+
+	private void SpawnControlledPlayer() {
+		mainCharacter = Instantiate (Gingy) as GameObject;
+	}
+
 
 
 	void InitGame(){

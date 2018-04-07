@@ -51,3 +51,7 @@
 /Users/cgatton/Documents/GitHub/Project3/Name tbd/Temp/bin/Debug/Unity.CecilTools.dll
 /Users/cgatton/Documents/GitHub/Project3/Name tbd/Temp/bin/Debug/Unity.Cecil.Pdb.dll
 /Users/cgatton/Documents/GitHub/Project3/Name tbd/Temp/bin/Debug/Unity.Cecil.Mdb.dll
+/Users/cgatton/Documents/GitHub/Project3/Name tbd/Temp/bin/Debug/Assembly-CSharp-firstpass.dll
+/Users/cgatton/Documents/GitHub/Project3/Name tbd/Temp/bin/Debug/Assembly-CSharp-firstpass.dll.mdb
+/Users/cgatton/Documents/GitHub/Project3/Name tbd/Temp/bin/Debug/Assembly-CSharp-Editor-firstpass.dll
+/Users/cgatton/Documents/GitHub/Project3/Name tbd/Temp/bin/Debug/Assembly-CSharp-Editor-firstpass.dll.mdb
