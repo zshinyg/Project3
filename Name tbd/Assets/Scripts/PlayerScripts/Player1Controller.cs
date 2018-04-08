@@ -10,7 +10,7 @@ public class Player1Controller : MonoBehaviour
     public float speed = 5.0f;
 
     private Rigidbody2D myPlayer;
-
+	private IPlayer player;
     private Animator animator;
     //private Vector2 touchOrigin = -Vector2.one;
 
@@ -18,12 +18,13 @@ public class Player1Controller : MonoBehaviour
     //int moveUp = Animator.StringToHash("Player1Up");
     //int runStateHash = Animator.StringToHash("Base Layer.Run");
 
+	public GameObject enemyTarget;
+
 
     void Start()
     {
         myPlayer = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        
         //current = gameObject.transform.position;
         //Debug.Log(animator);
         //Debug.Log(myPlayer);
@@ -38,6 +39,9 @@ public class Player1Controller : MonoBehaviour
     {
         Vector2 move = new Vector2(CrossPlatformInputManager.GetAxis("Horizontal"), CrossPlatformInputManager.GetAxis("Vertical"));
         bool isAttacking = CrossPlatformInputManager.GetButtonDown("Attack");
+
+		enemyTarget = GameObject.FindGameObjectWithTag("Enemy");
+
         //Debug.Log(isAttacking);
         if (move == Vector2.zero)
         {
@@ -52,9 +56,8 @@ public class Player1Controller : MonoBehaviour
         /// Attack ////
         if (isAttacking)// & !isTriggering)
         {
-            //animator.SetTrigger("Player1Attack");
             animator.Play("Player1Attack_Spin");
-            //CrossPlatformInputManager.Update();
+			player.Attack(enemyTarget);
             Debug.Log(isAttacking);
         }
         else if (move.x < 0 && (Math.Abs(move.x) > Math.Abs(move.y)))
