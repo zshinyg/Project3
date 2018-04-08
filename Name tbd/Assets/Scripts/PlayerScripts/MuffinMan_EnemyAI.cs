@@ -157,7 +157,7 @@ public class MuffinMan_EnemyAI : MovingObject
         //{
             if(Mathf.Abs(xDir) > Mathf.Abs(yDir))
             {
-                float xOffset = target.x < current.x ? 1.40f : -1.40f;
+                float xOffset = target.x < current.x ? 0.35f : -0.35f;
                 base.AttemptMove<T>(xDir + xOffset, yDir);
                 //myEnemy.velocity = Vector3.zero;
                 return;
@@ -167,7 +167,7 @@ public class MuffinMan_EnemyAI : MovingObject
             }
             else
             {
-                float yOffset = target.y < current.y ? 1.40f : -1.40f;
+                float yOffset = target.y < current.y ? 0.35f: -0.35f;
                 base.AttemptMove<T>(xDir, yDir + yOffset);
                 //myEnemy.velocity = Vector3.zero;
                 return;
@@ -188,7 +188,7 @@ public class MuffinMan_EnemyAI : MovingObject
         yPos = deltaY;
         xPos = deltaX;*/
         Debug.Log(Vector3.Distance(current, target));
-        if (Math.Abs(Vector3.Distance(current, target)) >= 20.0f)
+        if (Math.Abs(Vector3.Distance(current, target)) >= 5.0f)
         {
             //enemy.Translate(new Vector3(current.x, current.y, 0));
             //myEnemy.velocity = Vector3.zero;
@@ -199,7 +199,7 @@ public class MuffinMan_EnemyAI : MovingObject
             }
             
         }
-        else if (!(Math.Abs(Vector3.Distance(current, target)) <= 1.5f))
+        else if (!(Math.Abs(Vector3.Distance(current, target)) <= 0.375f))
         {
             startMoving = true;
 
@@ -210,7 +210,7 @@ public class MuffinMan_EnemyAI : MovingObject
             }
 
             ////// Movement Animations //////
-            if ((current.x > (target.x + 1.6f)) && (Math.Abs(deltaX) > Math.Abs(deltaY)))
+            if ((current.x > (target.x + 0.4f)) && (Math.Abs(deltaX) > Math.Abs(deltaY)))
             {
                 if (myCollider.gameObject == myPlayer)
                 {
@@ -221,19 +221,19 @@ public class MuffinMan_EnemyAI : MovingObject
                 //animator.SetTrigger("MuffinManLeft");
                 animator.Play("MuffinManLeft");
             }
-            else if ((current.x < (target.x - 1.6f)) && (Math.Abs(deltaX) > Math.Abs(deltaY)))
+            else if ((current.x < (target.x - 0.4f)) && (Math.Abs(deltaX) > Math.Abs(deltaY)))
             {
                 //animator.SetTrigger("MuffinManRight");
                 animator.Play("MuffinManRight");
 
                 //OnTriggerEnter2D(myCollider);
             }
-            else if ((current.y < (target.y - 2.0f)) && (Math.Abs(deltaX) < Math.Abs(deltaY)))
+            else if ((current.y < (target.y - 0.5f)) && (Math.Abs(deltaX) < Math.Abs(deltaY)))
             {
                 //animator.SetTrigger("MuffinManUp");
                 animator.Play("MuffinManUp");
             }
-            else if ((current.y > (target.y + 2.0f)) && (Math.Abs(deltaX) < Math.Abs(deltaY)))
+            else if ((current.y > (target.y + 0.5f)) && (Math.Abs(deltaX) < Math.Abs(deltaY)))
             {
                 //animator.SetTrigger("MuffinManDown");
                 animator.Play("MuffinManDown");
@@ -267,24 +267,24 @@ public class MuffinMan_EnemyAI : MovingObject
         else
         {
             /// Attack Left ////
-            if (current.x > (target.x + 1.4f))
+            if (current.x > (target.x + 0.35f))
             {
                 animator.Play("MuffinManAttack_Left");
             }
             //// Attack Right ////
-            else if (current.x < (target.x - 1.4f))
+            else if (current.x < (target.x - 0.35f))
             {
                 animator.SetTrigger("MuffinManAttack_Right");
                 //Debug.Log(isAttackingRight);
             }
             /// Attack Up ////
-            else if ((current.y < (target.y - 1.6f)) & (current.y == target.y))
+            else if ((current.y < (target.y - 0.4f)) & (current.y == target.y))
             {
                 animator.Play("MuffinManAttack_Up");
                 //Debug.Log(isAttackingUp);
             }
             /// Attack Down ////
-            else if ((current.y > (target.y + 1.6f)) & (current.y == target.y))
+            else if ((current.y > (target.y + 0.4f)) & (current.y == target.y))
             {
                 animator.Play("MuffinManAttack_Down");
                 //Debug.Log(isAttackingDown);
