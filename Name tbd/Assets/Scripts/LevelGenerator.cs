@@ -14,6 +14,9 @@ namespace Completed
 		public Map map;
 		public int numItems;
 		public GameObject[] Items;
+		public Vector3 playerPos;
+		public List<GameObject> Enemies;
+		public GameObject Enemy;
 
 
 		Vector3 moveNextPos(Vector3 nextPos, Direction nextDir){
@@ -76,6 +79,24 @@ namespace Completed
 		}
 
 
+
+		void generateEnemies(int numEnemies){
+			Vector3 enemyPos;
+			GameObject toInstantiate;
+
+			for (int i = 0; i < numEnemies; i++) {
+
+				Enemies.Add (Enemy);
+
+				toInstantiate = Enemy;
+				enemyPos = map.floorPositions [Random.Range (0, map.floorPositions.Count)];
+				GameObject instance = Instantiate (toInstantiate, enemyPos, Quaternion.identity) as GameObject;
+				instance.transform.SetParent (map.GetBoardHolder());
+				map.gridPositions.Remove (enemyPos);
+			}		
+		}
+		
+
 		void generateItems(int level){
 			Vector3 itemPos;
 			GameObject toInstantiate;
@@ -122,6 +143,7 @@ namespace Completed
 				columns = 30;
 				rows = 30;
 			}
+			numEnemies = level;
 			//Creates the outer walls and floor.
 			numFloorTiles = (columns *rows)/3;
 			map.MapSetup (columns, rows);
@@ -129,9 +151,14 @@ namespace Completed
 			map.placeFloors ();
 			map.placeWalls ();
 			generateItems (level);
-
+			generateEnemies (level);
 		}
 
+		public void PlacePlayer(GameObject Player){
+			playerPos = map.floorPositions [Random.Range (0, map.floorPositions.Count)];
+			Player.transform.position = playerPos;
+			map.gridPositions.Remove (playerPos);
+		}
 
 		void Awake(){
 			if (!(GameObject.Find("Map")))

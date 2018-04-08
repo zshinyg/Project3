@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gingy : IPlayer{
+public class Gingy : IPlayer {
 
-	
+
 }

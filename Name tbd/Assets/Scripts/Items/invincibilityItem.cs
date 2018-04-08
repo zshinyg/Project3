@@ -19,6 +19,6 @@ public class invincibilityItem : IItem
     }
 
     private void changeInviciblity(IPlayer player){
-        player.setInvincibility(true);
+        //player.setInvincibility(true);
     }
 }

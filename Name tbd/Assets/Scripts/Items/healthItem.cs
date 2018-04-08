@@ -25,6 +25,6 @@ public class healthItem : IItem
         }
 
         changeToHealth = changeToHealth*10;
-		player.setHealth(player.getHealth() + changeToHealth);
+		//player.setHealth(player.getHealth() + changeToHealth);
     }
 }

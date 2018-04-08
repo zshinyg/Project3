@@ -51,12 +51,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Gingy.cs" />
-     <Compile Include="Assets\Scripts\Interfaces\Character.cs" />
-     <Compile Include="Assets\Scripts\Interfaces\Enemy.cs" />
-     <Compile Include="Assets\Scripts\Interfaces\Item.cs" />
-     <Compile Include="Assets\Scripts\Interfaces\Player.cs" />
+     <Compile Include="Assets\Scripts\Interfaces\ICharacter.cs" />
+     <Compile Include="Assets\Scripts\Interfaces\IEnemy.cs" />
+     <Compile Include="Assets\Scripts\Interfaces\IItem.cs" />
+     <Compile Include="Assets\Scripts\Interfaces\IPlayer.cs" />
      <Compile Include="Assets\Scripts\Items\attackItem.cs" />
      <Compile Include="Assets\Scripts\Items\healthItem.cs" />
      <Compile Include="Assets\Scripts\Items\invincibilityItem.cs" />
