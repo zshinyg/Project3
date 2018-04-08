@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
 
 	private Text levelText;
 	private GameObject levelImage;
-	private int level = 5;                                  //Current level number, expressed in game as "Day 1".
+	private int level = 1;                                  //Current level number, expressed in game as "Day 1".
 	private bool doingSetup;
 	private Transform camera;
 	private List<GameObject> Enemies;
@@ -70,8 +70,9 @@ public class GameManager : MonoBehaviour
 	}
 
 	private void OnLevelWasLoaded(int index){
-		level++;
+		
 		InitGame ();
+		level++;
 	}
 
 }

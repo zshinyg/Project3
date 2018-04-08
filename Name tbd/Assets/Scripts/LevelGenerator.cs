@@ -17,6 +17,7 @@ namespace Completed
 		public Vector3 playerPos;
 		public List<GameObject> Enemies;
 		public GameObject Enemy;
+		public int numEnemies;
 
 
 		Vector3 moveNextPos(Vector3 nextPos, Direction nextDir){
