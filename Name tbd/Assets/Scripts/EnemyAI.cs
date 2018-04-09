@@ -12,12 +12,20 @@ public class EnemyAI : MonoBehaviour {
 	private bool canMove;
 	private int attackDelay;
 
+
+
 	void Start(){
 		canMove = false;
-		Debug.Log ("Started");
+		//Debug.Log ("Started");
 		attackDelay = 0;
 	}
 
+
+	/**
+	 * Updates every 0.02 seconds prompting the Enemy to follow the main player
+	 * @Param None
+	 * @Return None
+	**/
 	void FixedUpdate(){
 		attackDelay++;
 		Player = GameObject.FindGameObjectWithTag ("Player");
@@ -35,6 +43,12 @@ public class EnemyAI : MonoBehaviour {
 			
 	}
 
+
+	/**
+	 * Attempts to attack the main player within a certain radius.
+	 * @Param None
+	 * @Return None
+	**/
 	public void tryAttack(){
 		Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 0.5f);
 		int i = 0;
@@ -47,6 +61,7 @@ public class EnemyAI : MonoBehaviour {
 			i++;
 		}
 	}
+
 
 	public void toggleMove(){
 		canMove = !canMove;
