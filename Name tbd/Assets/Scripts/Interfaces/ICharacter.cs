@@ -6,7 +6,7 @@ public interface ICharacter{
 
 	void TakeDamage (int damageTaken);
 
-	int GiveDamage ();
+	void Attack<T> (T component);
 
 	void setSpeed (int speed);
 

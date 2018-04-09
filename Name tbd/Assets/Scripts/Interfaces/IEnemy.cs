@@ -8,8 +8,7 @@ public class IEnemy: ICharacter {
 		
 	}
 
-	public int GiveDamage (){
-		return 10;
+	public void Attack<T> (T component){
 	}
 
 	public void setSpeed (int speed){
