@@ -13,12 +13,11 @@ public class IEnemy: MonoBehaviour, ICharacter {
 
 	public void TakeDamage (int damageTaken){
 		Health = Health - damageTaken;
-		if (isDead ()) {
-			Destroy (this.gameObject);
-		}
+		isDead ();
 	}
 
 	public void Attack (){
+	
 	}
 
 	public void setSpeed (int speed){
@@ -29,6 +28,7 @@ public class IEnemy: MonoBehaviour, ICharacter {
 
 	public bool isDead (){
 		if (Health <= 0) {
+			Die ();
 			return true;
 		} else {
 			return  false;
@@ -36,6 +36,7 @@ public class IEnemy: MonoBehaviour, ICharacter {
 	}
 
 	public void Die(){
+		Destroy (this.gameObject);
 	}
 
 

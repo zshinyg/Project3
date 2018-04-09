@@ -15,8 +15,8 @@ namespace Completed
 		public int numItems;
 		public GameObject[] Items;
 		public Vector3 playerPos;
-		public List<GameObject> Enemies;
 		public GameObject Enemy;
+	
 		public int numEnemies;
 
 
@@ -44,6 +44,14 @@ namespace Completed
 
 
 
+		void FixedUpdate(){
+			//GameObject[] EnemyArr = GameObject.FindGameObjectsWithTag ("Enemy");
+			//UpdateNumEnemies (EnemyArr.Length);
+			//Debug.Log ("Number of enemies inside LG: " + numEnemies);
+			
+		}
+
+
 		//Sets up the floor tiles randomly
 		void FloorSetup() {
 
@@ -54,7 +62,7 @@ namespace Completed
 			map.gridPositions.Remove(currentPosition);											//Remove this from gridPosition
 			Direction nextDirection;
 
-			Debug.Log (currentPosition.x +", " + currentPosition.y);
+			//Debug.Log (currentPosition.x +", " + currentPosition.y);
 
 			for (int i = 0; i < numFloorTiles; i++) {
 				nextDirection = (Direction)Random.Range (0, 3);								//Select a random direction
@@ -81,14 +89,11 @@ namespace Completed
 
 
 
-		void generateEnemies(int numEnemies){
-			Enemies.Clear();
+		void generateEnemies(int numberOfEnemies){
 			Vector3 enemyPos;
 			GameObject toInstantiate;
 
-			for (int i = 0; i < numEnemies; i++) {
-
-				Enemies.Add (Enemy);
+			for (int i = 0; i < numberOfEnemies; i++) {
 				toInstantiate = Enemy;
 				enemyPos = map.floorPositions [Random.Range (0, map.floorPositions.Count)];
 				GameObject instance = Instantiate (toInstantiate, enemyPos, Quaternion.identity) as GameObject;
@@ -144,7 +149,7 @@ namespace Completed
 				columns = 30;
 				rows = 30;
 			}
-			numEnemies = level;
+			//numEnemies = level;
 			//Creates the outer walls and floor.
 			numFloorTiles = (columns *rows)/3;
 			map.MapSetup (columns, rows);
@@ -166,6 +171,13 @@ namespace Completed
 			{
 				Instantiate(map);
 			}
+		}
+
+		public int getNumEnemies(){
+			//Debug.Log (numEnemies);
+			numEnemies = GameObject.FindGameObjectsWithTag ("Enemy").Length;
+			//Debug.Log("Number inside get: " + numEnemies);
+			return numEnemies;
 		}
 	}
 }
