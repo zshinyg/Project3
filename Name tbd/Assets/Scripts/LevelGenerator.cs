@@ -82,13 +82,13 @@ namespace Completed
 
 
 		void generateEnemies(int numEnemies){
+			Enemies.Clear();
 			Vector3 enemyPos;
 			GameObject toInstantiate;
 
 			for (int i = 0; i < numEnemies; i++) {
 
 				Enemies.Add (Enemy);
-
 				toInstantiate = Enemy;
 				enemyPos = map.floorPositions [Random.Range (0, map.floorPositions.Count)];
 				GameObject instance = Instantiate (toInstantiate, enemyPos, Quaternion.identity) as GameObject;

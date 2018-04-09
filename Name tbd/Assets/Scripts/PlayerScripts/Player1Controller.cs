@@ -10,7 +10,7 @@ public class Player1Controller : MonoBehaviour
     public float speed = 5.0f;
 
     private Rigidbody2D myPlayer;
-	private IPlayer player;
+	private GameObject player;
     private Animator animator;
     //private Vector2 touchOrigin = -Vector2.one;
 
@@ -23,6 +23,7 @@ public class Player1Controller : MonoBehaviour
 
     void Start()
     {
+		player = GameObject.FindGameObjectWithTag ("Player");
         myPlayer = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         //current = gameObject.transform.position;
@@ -57,8 +58,7 @@ public class Player1Controller : MonoBehaviour
         if (isAttacking)// & !isTriggering)
         {
             animator.Play("Player1Attack_Spin");
-			player.Attack(enemyTarget);
-            Debug.Log(isAttacking);
+			player.GetComponent<IPlayer>().Attack();
         }
         else if (move.x < 0 && (Math.Abs(move.x) > Math.Abs(move.y)))
         {

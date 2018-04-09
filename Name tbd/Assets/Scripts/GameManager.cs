@@ -16,10 +16,11 @@ public class GameManager : MonoBehaviour
 
 	private Text levelText;
 	private GameObject levelImage;
-	private int level =10;                                  //Current level number, expressed in game as "Day 1".
+	private Text enemyText;
+	private GameObject enemyImage;
+	private int level =1;                                  //Current level number, expressed in game as "Day 1".
 	private bool doingSetup;
 	private Transform camera;
-	private List<GameObject> Enemies;
 
 
     void Awake()
@@ -36,7 +37,10 @@ public class GameManager : MonoBehaviour
     }
 
 	void FixedUpdate(){
-		
+		if (levelGenerator.Enemies.Count == 0) {
+			Debug.Log ("Level Over");
+		}
+
 	}
 
 	private void HideLevelImage() {
@@ -60,17 +64,20 @@ public class GameManager : MonoBehaviour
 		Invoke ("HideLevelImage", levelStartDelay);
 	}
 		
+	void ShowEnemies (){
+		enemyImage = GameObject.Find ("EnemyImage");
+		enemyText = GameObject.Find ("EnemyText").GetComponent<Text>();
+		enemyText.text = "Enemies: " + levelGenerator.Enemies.Count;
+	}
 
 	void InitGame(){
 		doingSetup = true;
 		LevelTransition ();
+		ShowEnemies ();
 		levelGenerator.PlacePlayer (mainCharacter);
-		Enemies = levelGenerator.Enemies;
-
 	}
 
 	private void OnLevelWasLoaded(int index){
-		
 		InitGame ();
 		level++;
 	}

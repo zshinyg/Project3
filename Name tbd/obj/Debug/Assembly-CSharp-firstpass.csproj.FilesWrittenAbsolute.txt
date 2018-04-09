@@ -29,3 +29,4 @@
 /Users/cgatton/Documents/GitHub/Project3/Name tbd/Temp/bin/Debug/Unity.CecilTools.dll
 /Users/cgatton/Documents/GitHub/Project3/Name tbd/Temp/bin/Debug/Unity.Cecil.Pdb.dll
 /Users/cgatton/Documents/GitHub/Project3/Name tbd/Temp/bin/Debug/Unity.Cecil.Mdb.dll
+/Users/cgatton/Documents/GitHub/Project3/Name tbd/Temp/bin/Debug/UnityEditor.UI.dll

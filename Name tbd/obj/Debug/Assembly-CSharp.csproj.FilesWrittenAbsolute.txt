@@ -31,3 +31,4 @@
 /Users/cgatton/Documents/GitHub/Project3/Name tbd/Temp/bin/Debug/TextMeshPro-2017.3-1.0.56-Runtime.dll
 /Users/cgatton/Documents/GitHub/Project3/Name tbd/Temp/bin/Debug/Assembly-CSharp-firstpass.dll
 /Users/cgatton/Documents/GitHub/Project3/Name tbd/Temp/bin/Debug/Assembly-CSharp-firstpass.dll.mdb
+/Users/cgatton/Documents/GitHub/Project3/Name tbd/Temp/bin/Debug/UnityEditor.UI.dll

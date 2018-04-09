@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IPlayer: ICharacter {
+public class IPlayer: MonoBehaviour, ICharacter {
 
-	public Transform myPlayer;
-	public Transform Enemy;
+
+	public GameObject[] Enemies;
 
 	public void Start()
 	{
@@ -18,14 +18,19 @@ public class IPlayer: ICharacter {
 
 	}
 
-	public void Attack<T>(T component)
+	public void Attack()
 	{
-		myPlayer = GameObject.FindGameObjectWithTag ("Player").transform;
-		Enemy = GameObject.FindGameObjectWithTag ("Enemy").transform;
-		if(Math.Abs(Vector3.Distance(myPlayer.position, Enemy.position)) <= 0.5)
+		//Enemies = GameObject.FindGameObjectsWithTag ("Enemies");
+		Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 0.5f);
+		int i = 0;
+		while (i < hitColliders.Length)
 		{
-			IEnemy myEnemy = component as IEnemy;
-			myEnemy.TakeDamage(5);
+			if (hitColliders [i].tag == "Enemy") {
+				
+				hitColliders [i].GetComponent<IEnemy> ().TakeDamage(20);
+				Debug.Log(hitColliders [i].GetComponent<IEnemy> ().Health);
+			} 
+			i++;
 
 		}
 	}
@@ -38,6 +43,10 @@ public class IPlayer: ICharacter {
 
 	public bool isDead (){
 		return false;
+	}
+
+	public void Die (){
+		
 	}
 
 
