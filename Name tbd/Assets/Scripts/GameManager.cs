@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
 		//Debug.Log ("Number of Enemies inside GM: " + levelGenerator.getNumEnemies());
 		if (levelGenerator.getNumEnemies() <= 0) {
 			Debug.Log ("Level Over");
-			LevelOver ();
+			//LevelOver ();
 		}
 		//Debug.Log(mainCharacter.GetComponent<IPlayer> ().isDead ());
 		if (mainCharacter.GetComponent<IPlayer> ().isDead ()) {
@@ -103,13 +103,13 @@ public class GameManager : MonoBehaviour
 		SceneManager.LoadScene ("GameOver");
 	}
 
-	void LevelOver(){
-		Destroy (levelGenerator);
-		Instantiate(levelGenerator);
-		SpawnControlledPlayer ();
-		InitGame ();
-		levelGenerator.SetupScene(level);
-	}
+//	void LevelOver(){
+//		Destroy (levelGenerator);
+//		Instantiate(levelGenerator);
+//		SpawnControlledPlayer ();
+//		InitGame ();
+//		levelGenerator.SetupScene(level);
+//	}
 
 
 
