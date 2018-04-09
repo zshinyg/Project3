@@ -8,6 +8,8 @@ public class IPlayer: MonoBehaviour, ICharacter {
 
 	public GameObject[] Enemies;
 
+	public int Health = 100;
+
 	public void Start()
 	{
 
@@ -15,7 +17,10 @@ public class IPlayer: MonoBehaviour, ICharacter {
 	}
 
 	public void TakeDamage (int damageTaken){
-
+		Health = Health - damageTaken;
+		if (isDead ()) {
+			Die ();
+		}
 	}
 
 	public void Attack()
@@ -42,11 +47,16 @@ public class IPlayer: MonoBehaviour, ICharacter {
 	}
 
 	public bool isDead (){
-		return false;
+		if (Health <= 0) {
+			return true;
+		} else {
+			return  false;
+		}
 	}
 
 	public void Die (){
-		
+		//Destroy (this.gameObject);
+
 	}
 
 

@@ -10,36 +10,43 @@ public class EnemyAI : MonoBehaviour {
 	private Vector3 delta; 						// Distance FROM enemy TO player
 	int moveSpeed = 1;
 	private bool canMove;
+	private int attackDelay;
 
 	void Start(){
 		canMove = false;
 		Debug.Log ("Started");
+		attackDelay = 0;
 	}
 
-	void Update(){
+	void FixedUpdate(){
+		attackDelay++;
 		Player = GameObject.FindGameObjectWithTag ("Player");
 		playerPos = Player.transform;
 		delta = playerPos.position - this.transform.position;
 
-
-
 		if (Math.Abs(delta.magnitude) < 1) {
-
-
 			this.transform.position += delta * moveSpeed * Time.deltaTime;
 		}
 
-
-
-//		if(Vector3.Distance(transform.position,Player.) >= minDist){
-//			transform.position += transform.forward * moveSpeed * Time.deltaTime;
-//
-//			if(Vector3.Distance(transform.position, Player.position) <= maxDist){
-//				//attack
-//			}
-//		}
+		if(attackDelay >= 50){
+			attackDelay = 0;
+			tryAttack();
+		}
+			
 	}
 
+	public void tryAttack(){
+		Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 0.5f);
+		int i = 0;
+		while (i < hitColliders.Length) {
+			if (hitColliders [i].tag == "Player") {
+
+				hitColliders [i].GetComponent<IPlayer> ().TakeDamage (5);
+				Debug.Log (hitColliders [i].GetComponent<IPlayer> ().Health);
+			} 
+			i++;
+		}
+	}
 
 	public void toggleMove(){
 		canMove = !canMove;

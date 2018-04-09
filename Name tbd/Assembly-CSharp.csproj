@@ -54,6 +54,7 @@
      <Compile Include="Assets\Scripts\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\EnemyAI.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\GameOver.cs" />
      <Compile Include="Assets\Scripts\Gingy.cs" />
      <Compile Include="Assets\Scripts\Interfaces\ICharacter.cs" />
      <Compile Include="Assets\Scripts\Interfaces\IEnemy.cs" />
