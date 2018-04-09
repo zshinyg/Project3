@@ -1,0 +1,72 @@
+\hypertarget{class_map}{}\section{Map Class Reference}
+\label{class_map}\index{Map@{Map}}
+Inheritance diagram for Map\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_map}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Transform \mbox{\hyperlink{class_map_a65f298678747e49b6f99ba46271e2519}{Get\+Board\+Holder}} ()
+\item 
+void \mbox{\hyperlink{class_map_a4b4925269b22d09fc07109d19f8c32e6}{place\+Floors}} ()
+\item 
+void \mbox{\hyperlink{class_map_a861230d1abdb5ed46e9dc95e8bf61d41}{place\+Walls}} ()
+\item 
+void \mbox{\hyperlink{class_map_a61d3bb5dbaec40d06efb1b29539f3d2f}{Map\+Setup}} (int cols, int row)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_map_a284e57bb463795f868d0004f2c91ce34}\label{class_map_a284e57bb463795f868d0004f2c91ce34}} 
+Game\+Object \mbox{[}$\,$\mbox{]} {\bfseries floor\+Tiles}
+\item 
+\mbox{\Hypertarget{class_map_abc75d741038130d7b274d5eab51758c1}\label{class_map_abc75d741038130d7b274d5eab51758c1}} 
+Game\+Object \mbox{[}$\,$\mbox{]} {\bfseries wall\+Tiles}
+\item 
+\mbox{\Hypertarget{class_map_a9be8c4808419f525ab5452f1b074c90f}\label{class_map_a9be8c4808419f525ab5452f1b074c90f}} 
+List$<$ Vector3 $>$ {\bfseries grid\+Positions} = new List $<$Vector3$>$ ()
+\item 
+\mbox{\Hypertarget{class_map_a4a5808c38dec273b158a81a6af47e5f5}\label{class_map_a4a5808c38dec273b158a81a6af47e5f5}} 
+List$<$ Vector3 $>$ {\bfseries floor\+Positions} = new List $<$Vector3$>$ ()
+\item 
+\mbox{\Hypertarget{class_map_a86f5dc6f831600a856ee693454bdf308}\label{class_map_a86f5dc6f831600a856ee693454bdf308}} 
+int {\bfseries columns}
+\item 
+\mbox{\Hypertarget{class_map_a4c6ba6b1a6ba20821550e6dd8f8cefbe}\label{class_map_a4c6ba6b1a6ba20821550e6dd8f8cefbe}} 
+int {\bfseries rows}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_map_a65f298678747e49b6f99ba46271e2519}\label{class_map_a65f298678747e49b6f99ba46271e2519}} 
+\index{Map@{Map}!Get\+Board\+Holder@{Get\+Board\+Holder}}
+\index{Get\+Board\+Holder@{Get\+Board\+Holder}!Map@{Map}}
+\subsubsection{\texorpdfstring{Get\+Board\+Holder()}{GetBoardHolder()}}
+{\footnotesize\ttfamily Transform Map.\+Get\+Board\+Holder (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns a holder in the hiearchy to hold walls, floor etc...  None  Transform \mbox{\Hypertarget{class_map_a61d3bb5dbaec40d06efb1b29539f3d2f}\label{class_map_a61d3bb5dbaec40d06efb1b29539f3d2f}} 
+\index{Map@{Map}!Map\+Setup@{Map\+Setup}}
+\index{Map\+Setup@{Map\+Setup}!Map@{Map}}
+\subsubsection{\texorpdfstring{Map\+Setup()}{MapSetup()}}
+{\footnotesize\ttfamily void Map.\+Map\+Setup (\begin{DoxyParamCaption}\item[{int}]{cols,  }\item[{int}]{row }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+sets the size of the map and calls Board\+Setup()  int cols  int row  None \mbox{\Hypertarget{class_map_a4b4925269b22d09fc07109d19f8c32e6}\label{class_map_a4b4925269b22d09fc07109d19f8c32e6}} 
+\index{Map@{Map}!place\+Floors@{place\+Floors}}
+\index{place\+Floors@{place\+Floors}!Map@{Map}}
+\subsubsection{\texorpdfstring{place\+Floors()}{placeFloors()}}
+{\footnotesize\ttfamily void Map.\+place\+Floors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Place the foor tiles  None  None \mbox{\Hypertarget{class_map_a861230d1abdb5ed46e9dc95e8bf61d41}\label{class_map_a861230d1abdb5ed46e9dc95e8bf61d41}} 
+\index{Map@{Map}!place\+Walls@{place\+Walls}}
+\index{place\+Walls@{place\+Walls}!Map@{Map}}
+\subsubsection{\texorpdfstring{place\+Walls()}{placeWalls()}}
+{\footnotesize\ttfamily void Map.\+place\+Walls (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Place the wall tiles  None  None 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Map.\+cs\end{DoxyCompactItemize}
