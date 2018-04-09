@@ -4,5 +4,7 @@ using UnityEngine;
 
 public class Gingy : IPlayer {
 
+	public int Health = 100;
+
 
 }

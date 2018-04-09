@@ -2,13 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IEnemy: ICharacter {
+public class IEnemy: MonoBehaviour, ICharacter {
 
-	public void TakeDamage (int damageTaken){
-		
+
+	public int Health = 100;
+
+	void Start(){
+
 	}
 
-	public void Attack<T> (T component){
+	public void TakeDamage (int damageTaken){
+		Health = Health - damageTaken;
+		isDead ();
+	}
+
+	public void Attack (){
+	
 	}
 
 	public void setSpeed (int speed){
@@ -18,7 +27,17 @@ public class IEnemy: ICharacter {
 	}
 
 	public bool isDead (){
-		return false;
+		if (Health <= 0) {
+			Die ();
+			return true;
+		} else {
+			return  false;
+		}
 	}
+
+	public void Die(){
+		Destroy (this.gameObject);
+	}
+
 
 }

@@ -4,26 +4,36 @@ using System.Collections.Generic;       //Allows us to use Lists.
 using Completed;
 using UnityEngine.UI;
 using UnityStandardAssets._2D;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-
+	public static GameManager instance = null;
 	public float levelStartDelay = 2f;
-	public static GameManager instance;              //Static instance of GameManager which allows it to be accessed by any other script.
 	public LevelGenerator levelGenerator;    //Store a reference to our BoardManager which will set up the level.
 	public GameObject mainCharacter;
 
 
 	private Text levelText;
 	private GameObject levelImage;
-	private int level =10;                                  //Current level number, expressed in game as "Day 1".
+	private Text enemyText;
+	private GameObject enemyImage;
+	private int level = 1;                                  //Current level number, expressed in game as "Day 1".
 	private bool doingSetup;
 	private Transform camera;
-	private List<GameObject> Enemies;
 
 
     void Awake()
     {
+
+		if (instance == null) {
+			instance = this;
+		} else if (instance != this) {
+			Destroy (gameObject);
+		}
+
+		DontDestroyOnLoad (gameObject);
+			
 
         if (!(GameObject.Find("LevelGenerator")))
         {
@@ -36,7 +46,18 @@ public class GameManager : MonoBehaviour
     }
 
 	void FixedUpdate(){
-		
+
+		ShowEnemies ();
+		//Debug.Log ("Number of Enemies inside GM: " + levelGenerator.getNumEnemies());
+		if (levelGenerator.getNumEnemies() <= 0) {
+			Debug.Log ("Level Over");
+			LevelOver ();
+		}
+		//Debug.Log(mainCharacter.GetComponent<IPlayer> ().isDead ());
+		if (mainCharacter.GetComponent<IPlayer> ().isDead ()) {
+			GameOver ();
+		}
+
 	}
 
 	private void HideLevelImage() {
@@ -60,19 +81,36 @@ public class GameManager : MonoBehaviour
 		Invoke ("HideLevelImage", levelStartDelay);
 	}
 		
+	void ShowEnemies (){
+		enemyImage = GameObject.Find ("EnemyImage");
+		enemyText = GameObject.Find ("EnemyText").GetComponent<Text>();
+		enemyText.text = "Enemies: " + levelGenerator.getNumEnemies();
+	}
 
 	void InitGame(){
 		doingSetup = true;
 		LevelTransition ();
+		ShowEnemies ();
 		levelGenerator.PlacePlayer (mainCharacter);
-		Enemies = levelGenerator.Enemies;
-
 	}
 
 	private void OnLevelWasLoaded(int index){
-		
 		InitGame ();
 		level++;
 	}
+
+	void GameOver(){
+		SceneManager.LoadScene ("GameOver");
+	}
+
+	void LevelOver(){
+		Destroy (levelGenerator);
+		Instantiate(levelGenerator);
+		SpawnControlledPlayer ();
+		InitGame ();
+		levelGenerator.SetupScene(level);
+	}
+
+
 
 }
