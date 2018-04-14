@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*ing System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -187,7 +187,7 @@ public class MuffinMan_EnemyAI : MovingObject
 
         yPos = deltaY;
         xPos = deltaX;*/
-        Debug.Log(Vector3.Distance(current, target));
+/*        Debug.Log(Vector3.Distance(current, target));
         if (Math.Abs(Vector3.Distance(current, target)) >= 5.0f)
         {
             //enemy.Translate(new Vector3(current.x, current.y, 0));
@@ -327,7 +327,7 @@ public class MuffinMan_EnemyAI : MovingObject
         }*/
 
 
-    }
+    /*}
 
     protected override void OnCantMove<T>(T component)
     {
@@ -365,8 +365,8 @@ public class MuffinMan_EnemyAI : MovingObject
             //Debug.Log(isAttackingDown);
         }
 
-       // }*/
+       // }
     }
 
 
-}
+}*/
