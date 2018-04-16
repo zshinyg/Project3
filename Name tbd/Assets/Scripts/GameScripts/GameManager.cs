@@ -26,6 +26,12 @@ public class GameManager : MonoBehaviour
 	private Transform camera;
 
 
+    /* Awake
+         * @param none
+         * @return none
+         * Called when GameManager is initialized
+         * Starts the entire game
+         */
     void Awake()
     {
 
@@ -43,7 +49,14 @@ public class GameManager : MonoBehaviour
         
     }
 
-	void Update(){
+
+    /* Update
+        * @param none
+        * @return none
+        * Called based on the clock time
+        * Checks to see if the level is over or if the game is over
+        */
+    void Update(){
 
 		ShowEnemies ();
         Debug.Log("hello");
@@ -59,15 +72,32 @@ public class GameManager : MonoBehaviour
 	}
 
 
-	private void Spawn(){
+    /* Spawn
+         * @param none
+         * @return none
+         * Places the camera of the player on the main camera
+         */
+    private void Spawn(){
 		camera.parent = Camera.main.transform;
 	}
 
-	private void SpawnControlledPlayer() {
+
+    /* SpawnControlledPlayer
+         * @param none
+         * @return none
+         * Creates the GameObject of mainCharacer
+         */
+    private void SpawnControlledPlayer() {
 		mainCharacter = (GameObject)Instantiate (mainCharacter) as GameObject;
 	}
 
-	void LevelTransition(){
+
+    /* LevelTransition
+         * @param none
+         * @return none
+         * Shows and hides the level screen in between levels
+         */
+    void LevelTransition(){
 		levelImage = GameObject.Find ("LevelImage");
 		levelText = GameObject.Find ("LevelText").GetComponent<Text>();
 		levelText.text = "Level " + level;
@@ -75,12 +105,24 @@ public class GameManager : MonoBehaviour
 		Invoke ("HideLevelImage", levelStartDelay);
 	}
 
+
+    /* HideLevelImage
+         * @param none
+         * @return none
+         * Hides the level transition screen
+         */
     private void HideLevelImage()
     {
         levelImage.SetActive(false);
     }
 
 
+
+    /* ShowEnemeis
+         * @param none
+         * @return none
+         * UI element that shows the number of enemies remaining
+         */
     void ShowEnemies (){
 		enemyImage = GameObject.Find ("EnemyImage");
 		enemyText = GameObject.Find ("EnemyText").GetComponent<Text>();
@@ -88,7 +130,13 @@ public class GameManager : MonoBehaviour
 	}
 
 
-	void InitGame(){
+
+    /* InitGame
+         * @param none
+         * @return none
+         * Initializes the LevelManager and starts each level
+         */
+    void InitGame(){
 
         /* LevelManager stuff */
         if (!GameObject.Find("LevelManager"))
@@ -101,6 +149,12 @@ public class GameManager : MonoBehaviour
 		ShowEnemies ();
 	}
 
+
+    /* NextLevel
+         * @param none
+         * @return none
+         * Increments level
+         */
     void NextLevel()
     {
         Destroy(levelManager);
@@ -108,7 +162,13 @@ public class GameManager : MonoBehaviour
         InitGame();
     }
 
-	void GameOver(){
+
+    /* GameOver
+         * @param none
+         * @return none
+         * Loads teh game over scene
+         */
+    void GameOver(){
 		SceneManager.LoadScene ("GameOver");
 	}
 

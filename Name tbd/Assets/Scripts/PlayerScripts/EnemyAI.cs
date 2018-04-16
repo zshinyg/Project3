@@ -14,6 +14,12 @@ public class EnemyAI : MonoBehaviour {
 
     MuffinMan muffinMan;
 
+
+    /* Start
+     * @param none
+     * @return none
+     * Called to start the script and initializes canMove to false
+     */
     void Start()
     {
 		canMove = false;
@@ -24,25 +30,31 @@ public class EnemyAI : MonoBehaviour {
     }
 
 
-	/**
+    /**FixedUpdate
 	 * Updates every 0.02 seconds prompting the Enemy to follow the main player
 	 * @Param None
 	 * @Return None
 	**/
-	void FixedUpdate()
+    void FixedUpdate()
     {
-        if(GetComponent<IEnemy>().Health > 0)
+        if (GetComponent<IEnemy>().Health > 0)
         {
             attackDelay++;
-		    Player = GameObject.FindGameObjectWithTag ("Player");
-		    playerPos = Player.transform;
-		    delta = playerPos.position - this.transform.position;
-
-            if (Math.Abs(delta.magnitude) < 1)
+            Player = GameObject.FindGameObjectWithTag("Player");
+            playerPos = Player.transform;
+            delta = playerPos.position - this.transform.position;
+            if (!canMove)
             {
-                canMove = true;
+                if (Math.Abs(delta.magnitude) < 1)
+                {
+                    ToggleMove();
+                }
+            }
+
+            else
+            {
                 this.transform.position += delta * moveSpeed * Time.deltaTime;
-            
+
                 muffinMan.SetMove(canMove);
 
                 if (attackDelay >= 50)
@@ -54,22 +66,23 @@ public class EnemyAI : MonoBehaviour {
                     //{
                     TryAttack();
                     //}
-                   // else
+                    // else
                     //{
                     //    canMove = false;
                     //}
                 }
 
             }
-            else
-            {
-                canMove = false;
-            }
         }
+        else
+        {
+            canMove = false;
+        }
+        
     }
 
 
-	/**
+	/** TryAttack
 	 * Attempts to attack the main player within a certain radius.
 	 * @Param None
 	 * @Return None
