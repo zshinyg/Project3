@@ -13,17 +13,18 @@ public class GameManager : MonoBehaviour
     // ANTHING COMMENTED OUT FOR CHANGING TO LEVELMANAGER ITLL HAVE ***
 
     public static GameManager instance = null;
-	public float levelStartDelay = 2f;
+    public float levelStartDelay = 2f;
     public LevelManager levelManager;
-	public GameObject mainCharacter;
+    public GameObject mainCharacter;
 
 
-	private Text levelText;
-	private GameObject levelImage;
-	private Text enemyText;
-	private GameObject enemyImage;
-	private int level;                                  //Current level number, expressed in game as "Day 1".
-	private Transform camera;
+    private Text levelText;
+    private GameObject levelImage;
+    private Text enemyText;
+    private GameObject enemyImage;
+    private int level;                                  //Current level number, expressed in game as "Day 1".
+    private Transform camera;
+
 
 
     /* Awake
@@ -35,61 +36,65 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
 
-		if (instance == null) {
-			instance = this;
-		} else if (instance != this) {
-			Destroy (gameObject);
-		}
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
 
-		DontDestroyOnLoad (gameObject);
+        DontDestroyOnLoad(gameObject);
 
         level = 1;
-		SpawnControlledPlayer ();
-		InitGame ();
-        
+        SpawnControlledPlayer();
+        InitGame();
+
     }
 
 
     /* Update
-        * @param none
-        * @return none
-        * Called based on the clock time
-        * Checks to see if the level is over or if the game is over
-        */
-    void Update(){
+         * @param none
+         * @return none
+         * Called based on the clock time
+         * Checks to see if the level is over or if the game is over
+         */
+    void Update()
+    {
 
-		ShowEnemies ();
-        Debug.Log("hello");
+        ShowEnemies();
         Debug.Log(levelManager.isLevelOver());
         if (levelManager.isLevelOver())
         {
             NextLevel();
         }
-		if (mainCharacter.GetComponent<IPlayer> ().isDead ()) {
-			GameOver ();
-		}
+        if (mainCharacter.GetComponent<IPlayer>().isDead())
+        {
+            GameOver();
+        }
 
-	}
-
+    }
 
     /* Spawn
          * @param none
          * @return none
          * Places the camera of the player on the main camera
          */
-    private void Spawn(){
-		camera.parent = Camera.main.transform;
-	}
-
+    private void Spawn()
+    {
+        camera.parent = Camera.main.transform;
+    }
 
     /* SpawnControlledPlayer
          * @param none
          * @return none
          * Creates the GameObject of mainCharacer
          */
-    private void SpawnControlledPlayer() {
-		mainCharacter = (GameObject)Instantiate (mainCharacter) as GameObject;
-	}
+    private void SpawnControlledPlayer()
+    {
+        mainCharacter = (GameObject)Instantiate(mainCharacter) as GameObject;
+    }
 
 
     /* LevelTransition
@@ -97,13 +102,14 @@ public class GameManager : MonoBehaviour
          * @return none
          * Shows and hides the level screen in between levels
          */
-    void LevelTransition(){
-		levelImage = GameObject.Find ("LevelImage");
-		levelText = GameObject.Find ("LevelText").GetComponent<Text>();
-		levelText.text = "Level " + level;
-		levelImage.SetActive (true);
-		Invoke ("HideLevelImage", levelStartDelay);
-	}
+    void LevelTransition()
+    {
+        levelImage = GameObject.Find("LevelImage");
+        levelText = GameObject.Find("LevelText").GetComponent<Text>();
+        levelText.text = "Level " + level;
+        levelImage.SetActive(true);
+        Invoke("HideLevelImage", levelStartDelay);
+    }
 
 
     /* HideLevelImage
@@ -123,20 +129,20 @@ public class GameManager : MonoBehaviour
          * @return none
          * UI element that shows the number of enemies remaining
          */
-    void ShowEnemies (){
-		enemyImage = GameObject.Find ("EnemyImage");
-		enemyText = GameObject.Find ("EnemyText").GetComponent<Text>();
-		enemyText.text = "Enemies: " + levelManager.getNumEnemies();
-	}
-
-
+    void ShowEnemies()
+    {
+        enemyImage = GameObject.Find("EnemyImage");
+        enemyText = GameObject.Find("EnemyText").GetComponent<Text>();
+        enemyText.text = "Enemies: " + levelManager.getNumEnemies();
+    }
 
     /* InitGame
          * @param none
          * @return none
          * Initializes the LevelManager and starts each level
          */
-    void InitGame(){
+    void InitGame()
+    {
 
         /* LevelManager stuff */
         if (!GameObject.Find("LevelManager"))
@@ -144,10 +150,10 @@ public class GameManager : MonoBehaviour
             Instantiate(levelManager);
         }
 
+        LevelTransition();
         levelManager.startLevel(level, mainCharacter);
-        LevelTransition ();
-		ShowEnemies ();
-	}
+        ShowEnemies();
+    }
 
 
     /* NextLevel
@@ -157,7 +163,6 @@ public class GameManager : MonoBehaviour
          */
     void NextLevel()
     {
-        Destroy(levelManager);
         level++;
         InitGame();
     }
@@ -168,9 +173,10 @@ public class GameManager : MonoBehaviour
          * @return none
          * Loads teh game over scene
          */
-    void GameOver(){
-		SceneManager.LoadScene ("GameOver");
-	}
+    void GameOver()
+    {
+        SceneManager.LoadScene("GameOver");
+    }
 
 
 

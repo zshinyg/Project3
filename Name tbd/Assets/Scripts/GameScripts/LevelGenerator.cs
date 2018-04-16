@@ -287,10 +287,18 @@ namespace Completed
          */
         public int getNumEnemies()
         {
+            int returnNum = 0;
             //Debug.Log (numEnemies);
-            numEnemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
+            GameObject[] enemiesLeft = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach (GameObject deadEnemy in enemiesLeft) {
+                if (!(deadEnemy.GetComponent<IEnemy>().isDead()))
+                {
+                    returnNum++;
+                }
+            }
+
             //Debug.Log("Number inside get: " + numEnemies);
-            return numEnemies;
+            return returnNum;
         }
     }
 }
