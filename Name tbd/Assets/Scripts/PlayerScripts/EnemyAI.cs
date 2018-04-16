@@ -1,7 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class EnemyAI : MonoBehaviour {
 
@@ -80,7 +80,7 @@ public class EnemyAI : MonoBehaviour {
 	}
 
 
-	public void toggleMove(){
+	public void ToggleMove(){
 		canMove = !canMove;
 	}
 }

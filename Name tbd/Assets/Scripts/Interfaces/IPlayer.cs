@@ -3,22 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IPlayer: MonoBehaviour, ICharacter {
-
-
+public class IPlayer: MonoBehaviour, ICharacter
+{
 	public GameObject[] Enemies;
 
 	public int Health = 100;
 
-	public void Start()
+    private Animator animator;
+
+    public void Start()
 	{
+        animator = GetComponent<Animator>();
+    }
 
-
-	}
-
-	public void TakeDamage (int damageTaken){
-		Health = Health - damageTaken;
-		if (isDead ()) {
+	public void TakeDamage (int damageTaken)
+    {
+        animator.SetTrigger("Player1_Hurt");
+        Health = Health - damageTaken;
+		if (isDead ())
+        {
 			Die ();
 		}
 	}
@@ -40,24 +43,31 @@ public class IPlayer: MonoBehaviour, ICharacter {
 		}
 	}
 
-	public void setSpeed (int speed){
+	public void setSpeed (int speed)
+    {
 	}
 
-	public void setHealth(int health){
+	public void setHealth(int health)
+    {
 	}
 
-	public bool isDead (){
-		if (Health <= 0) {
+	public bool isDead ()
+    {
+		if (Health <= 0)
+        {
 			return true;
-		} else {
+		}
+        else
+        {
 			return  false;
 		}
 	}
 
-	public void Die (){
-		//Destroy (this.gameObject);
-
-	}
+	public void Die ()
+    {
+        animator.SetTrigger("Player1_Dead");
+        //Destroy (this.gameObject);
+    }
 
 
 

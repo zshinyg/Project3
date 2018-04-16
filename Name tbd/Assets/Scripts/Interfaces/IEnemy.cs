@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,16 +8,22 @@ public class IEnemy: MonoBehaviour, ICharacter {
 
 	public int Health = 100;
 
-	void Start(){
+    private Animator animator;
 
-	}
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
 
-	public void TakeDamage (int damageTaken){
-		Health = Health - damageTaken;
+	public void TakeDamage (int damageTaken)
+    {
+        animator.SetTrigger("MuffinMan_Hurt");
+        Health = Health - damageTaken;
 		isDead ();
 	}
 
-	public void Attack (){
+	public void Attack ()
+    {
 	
 	}
 
@@ -35,8 +42,10 @@ public class IEnemy: MonoBehaviour, ICharacter {
 		}
 	}
 
-	public void Die(){
-		Destroy (this.gameObject);
+	public void Die()
+    {
+        animator.SetTrigger("MuffinMan_Dead");
+        //Destroy (this.gameObject);
 	}
 
 

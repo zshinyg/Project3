@@ -1,9 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
-public class MuffinMan : IEnemy{
+public class MuffinMan : IEnemy
+{
 
 	public int Health = 100;
 
@@ -40,40 +41,45 @@ public class MuffinMan : IEnemy{
         {
             animator.Play("MuffinManIdle");
         }
+        else if (Health <= 0)
+        {
+            animator.Play("MuffinMan_Dead");
+        }
         ////// Movement Animations //////
         else if ((current.x > (target.x + 0.4f)) && (Math.Abs(delta.x) > Math.Abs(delta.y)))
         {
             //animator.SetTrigger("MuffinManLeft");
-            animator.Play("MuffinManLeft");
+            animator.SetTrigger("MuffinManLeft");
         }
         else if ((current.x < (target.x - 0.4f)) && (Math.Abs(delta.x) > Math.Abs(delta.y)))
         {
             //animator.SetTrigger("MuffinManRight");
-            animator.Play("MuffinManRight");
+            animator.SetTrigger("MuffinManRight");
         }
         else if ((current.y < (target.y - 0.5f)) && (Math.Abs(delta.x) < Math.Abs(delta.y)))
         {
             //animator.SetTrigger("MuffinManUp");
-            animator.Play("MuffinManUp");
+            animator.SetTrigger("MuffinManUp");
         }
         else if ((current.y > (target.y + 0.5f)) && (Math.Abs(delta.x) < Math.Abs(delta.y)))
         {
             //animator.SetTrigger("MuffinManDown");
-            animator.Play("MuffinManDown");
+            animator.SetTrigger("MuffinManDown");
         }
     }
 
 	public void TakeDamage (int damageTaken)
     {
-		Health = Health - damageTaken;
-	}
+        animator.SetTrigger("MuffinMan_Hurt");
+        Health = Health - damageTaken;
+    }
 
 	public void Attack ()
     {
         /// Attack Left ////
         if (current.x > (target.x))
         {
-            animator.Play("MuffinManAttack_Left");
+            animator.SetTrigger("MuffinManAttack_Left");
         }
         //// Attack Right ////
         else if (current.x < (target.x))
@@ -84,13 +90,13 @@ public class MuffinMan : IEnemy{
         /// Attack Up ////
         else if ((current.y < (target.y)) & (current.y == target.y))
         {
-            animator.Play("MuffinManAttack_Up");
+            animator.SetTrigger("MuffinManAttack_Up");
             //Debug.Log(isAttackingUp);
         }
         /// Attack Down ////
         else if ((current.y > (target.y)) & (current.y == target.y))
         {
-            animator.Play("MuffinManAttack_Down");
+            animator.SetTrigger("MuffinManAttack_Down");
             //Debug.Log(isAttackingDown);
         }
     }
@@ -105,9 +111,12 @@ public class MuffinMan : IEnemy{
 
 	public bool isDead ()
     {
-		if (Health <= 0) {
-			return true;
-		} else {
+		if (Health <= 0)
+        {
+            return true;
+		}
+        else
+        {
 			return  false;
 		}
 	}
