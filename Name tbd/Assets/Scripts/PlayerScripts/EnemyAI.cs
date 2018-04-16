@@ -31,30 +31,40 @@ public class EnemyAI : MonoBehaviour {
 	**/
 	void FixedUpdate()
     {
-		attackDelay++;
-		Player = GameObject.FindGameObjectWithTag ("Player");
-		playerPos = Player.transform;
-		delta = playerPos.position - this.transform.position;
-
-        if (Math.Abs(delta.magnitude) < 1)
+        if(GetComponent<IEnemy>().Health > 0)
         {
-            canMove = true;
-            this.transform.position += delta * moveSpeed * Time.deltaTime;
-		
+            attackDelay++;
+		    Player = GameObject.FindGameObjectWithTag ("Player");
+		    playerPos = Player.transform;
+		    delta = playerPos.position - this.transform.position;
 
-        muffinMan.SetMove(canMove);
+            if (Math.Abs(delta.magnitude) < 1)
+            {
+                canMove = true;
+                this.transform.position += delta * moveSpeed * Time.deltaTime;
+            
+                muffinMan.SetMove(canMove);
 
-        if (attackDelay >= 50)
-        {
-			attackDelay = 0;
-            //muffinMan.Attack();
-            tryAttack();
-		}
+                if (attackDelay >= 50)
+                {
+                    attackDelay = 0;
+                    //muffinMan.Attack();
 
-        }
-        else
-        {
-            canMove = false;
+                    //if (GetComponent<IEnemy>().Health > 0)
+                    //{
+                    TryAttack();
+                    //}
+                   // else
+                    //{
+                    //    canMove = false;
+                    //}
+                }
+
+            }
+            else
+            {
+                canMove = false;
+            }
         }
     }
 
@@ -64,7 +74,7 @@ public class EnemyAI : MonoBehaviour {
 	 * @Param None
 	 * @Return None
 	**/
-	public void tryAttack()
+	public void TryAttack()
     {
 		Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 0.5f);
 		int i = 0;
@@ -72,7 +82,7 @@ public class EnemyAI : MonoBehaviour {
 			if (hitColliders [i].tag == "Player") {
 
                 GetComponent<MuffinMan>().Attack();
-                hitColliders [i].GetComponent<IPlayer> ().TakeDamage (5);
+                hitColliders [i].GetComponent<IPlayer>().TakeDamage (5);
                 Debug.Log (hitColliders [i].GetComponent<IPlayer> ().Health);
 			} 
 			i++;

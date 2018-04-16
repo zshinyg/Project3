@@ -17,9 +17,11 @@ public class IEnemy: MonoBehaviour, ICharacter {
 
 	public void TakeDamage (int damageTaken)
     {
-        animator.SetTrigger("MuffinMan_Hurt");
-        Health = Health - damageTaken;
-		isDead ();
+        if(isDead() == false)
+        {
+            animator.SetTrigger("MuffinMan_Hurt");
+            Health = Health - damageTaken;
+        }
 	}
 
 	public void Attack ()
@@ -37,7 +39,9 @@ public class IEnemy: MonoBehaviour, ICharacter {
 		if (Health <= 0) {
 			Die ();
 			return true;
-		} else {
+		}
+        else
+        {
 			return  false;
 		}
 	}
@@ -45,8 +49,11 @@ public class IEnemy: MonoBehaviour, ICharacter {
 	public void Die()
     {
         animator.SetTrigger("MuffinMan_Dead");
+        //animator.Play("MuffinMan_Dead", 0, 0.9f);
+        //animator.enabled = false;
         //Destroy (this.gameObject);
-	}
+        Destroy(GetComponent<BoxCollider2D>());
+    }
 
 
 }

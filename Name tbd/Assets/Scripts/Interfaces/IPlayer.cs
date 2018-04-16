@@ -65,7 +65,8 @@ public class IPlayer: MonoBehaviour, ICharacter
 
 	public void Die ()
     {
-        animator.SetTrigger("Player1_Dead");
+        animator.Play("Player1_Dead", 0, 0.9f);
+        //animator.enabled = false;
         //Destroy (this.gameObject);
     }
 

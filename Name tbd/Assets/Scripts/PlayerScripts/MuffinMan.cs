@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class MuffinMan : IEnemy
 {
-
-	public int Health = 100;
+	//public int Health;
 
     private Animator animator;
     private Vector3 delta;
@@ -30,7 +29,7 @@ public class MuffinMan : IEnemy
         return letMove;
     }
 
-    void FixedUpdate()
+    public void FixedUpdate()
     {
         current = transform.position;
         target = GameObject.FindGameObjectWithTag("Player").transform.position;
@@ -41,9 +40,10 @@ public class MuffinMan : IEnemy
         {
             animator.Play("MuffinManIdle");
         }
-        else if (Health <= 0)
+        else if (GetComponent<IEnemy>().Health <= 0)
         {
-            animator.Play("MuffinMan_Dead");
+            animator.Play("MuffinMan_Dead", 0, 0.9f);
+            //animator.enabled = false;
         }
         ////// Movement Animations //////
         else if ((current.x > (target.x + 0.4f)) && (Math.Abs(delta.x) > Math.Abs(delta.y)))
