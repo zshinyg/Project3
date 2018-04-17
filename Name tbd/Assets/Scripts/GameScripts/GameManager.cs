@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     private GameObject enemyImage;
     private int level;                                  //Current level number, expressed in game as "Day 1".
     private Transform camera;
+    private bool isLoading;
 
 
 
@@ -47,6 +48,7 @@ public class GameManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
+        isLoading = true;
         level = 1;
         SpawnControlledPlayer();
         InitGame();
@@ -68,6 +70,7 @@ public class GameManager : MonoBehaviour
         if (levelManager.isLevelOver())
         {
             NextLevel();
+            isLoading = false;
         }
         if (mainCharacter.GetComponent<IPlayer>().isDead())
         {
@@ -153,6 +156,7 @@ public class GameManager : MonoBehaviour
         LevelTransition();
         levelManager.startLevel(level, mainCharacter);
         ShowEnemies();
+        isLoading = false;
     }
 
 
@@ -164,6 +168,10 @@ public class GameManager : MonoBehaviour
     void NextLevel()
     {
         level++;
+        if (!isLoading)
+        {
+            SceneManager.LoadScene("Level");
+        }
         InitGame();
     }
 

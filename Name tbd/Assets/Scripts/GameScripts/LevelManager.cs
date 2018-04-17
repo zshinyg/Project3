@@ -32,7 +32,7 @@ public class LevelManager : MonoBehaviour
     public void startLevel(int level, GameObject character)
     {
         mainCharacter = character;
-        levelGenerator.SetupScene(level);
+        levelGenerator.SetupScene(level-1);
         levelGenerator.PlacePlayer(mainCharacter);
 
     }
@@ -57,7 +57,11 @@ public class LevelManager : MonoBehaviour
          */
     public bool isLevelOver()
     {
-        if (levelGenerator.getNumEnemies() <= 0) return true;
+        if (levelGenerator.getNumEnemies() <= 0)
+        {
+            levelGenerator.ClearMap();
+            return true;
+        }
         else return false;
     }
 

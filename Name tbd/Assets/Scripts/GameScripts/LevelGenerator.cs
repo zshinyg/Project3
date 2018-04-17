@@ -260,7 +260,7 @@ namespace Completed
         Vector3 pickPlayerPostion()
         {
             Vector3 pos = map.floorPositions[Random.Range(0, map.floorPositions.Count)];
-            map.gridPositions.Remove(pos);
+            map.floorPositions.Remove(pos);
             return pos;
 
         }
@@ -299,6 +299,15 @@ namespace Completed
 
             //Debug.Log("Number inside get: " + numEnemies);
             return returnNum;
+        }
+
+
+        public void ClearMap()
+        {
+            map.gridPositions.Clear();
+            map.floorPositions.Clear();
+            enemyPositions.Clear();
+          
         }
     }
 }
