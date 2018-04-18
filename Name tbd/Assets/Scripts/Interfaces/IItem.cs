@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IItem: MonoBehaviour
+public interface IItem
 {
 
 	void Ability (IPlayer player);

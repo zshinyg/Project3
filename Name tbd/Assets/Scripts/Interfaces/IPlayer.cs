@@ -8,17 +8,20 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
 {
 	public GameObject[] Enemies;
 
-	public int Health = 100;
+	public int Health;
 
-    public bool Invinc = false;
+    public bool Invinc;
 
-    public int Attak = 20;
+    public int Attak;
 
     private Animator animator;
 
     public void Start()
 	{
         animator = GetComponent<Animator>();
+        setHealth(100);
+        setAttack(20);
+        setInvincibility(false);
     }
 
 	public void TakeDamage (int damageTaken)
@@ -27,13 +30,13 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
         {
             animator.SetTrigger("Player1_Hurt");
             Health = Health - damageTaken;
-            Debug.Log(Health);
+            Debug.Log("My Health:"+Health);
             if (isDead())
             {
                 Die();
             }
         }
-        else { Debug.Log(Health); }
+        else { Debug.Log("My Health:"+Health); }
 	}
 
 	public void Attack()
@@ -60,7 +63,7 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
 	public void setHealth(int health)
     {
         Health = health;
-        Debug.Log(Health);
+        Debug.Log("Health:"+Health);
 	}
 
     public int getHealth()
@@ -71,7 +74,7 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
     public void setAttack(int attack)
     {
         Attak = attack;
-        Debug.Log(Attak);
+        Debug.Log("Attack:"+Attak);
     }
 
     public int getAttack()
@@ -81,8 +84,8 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
 
     public void setInvincibility(bool invinc)
     {
-        Invinc = true;
-        Debug.Log("I'm Invincible"+ Invinc);
+        Invinc = invinc;
+        Debug.Log("Invincible:"+ Invinc);
     }
 
 	public bool isDead ()
