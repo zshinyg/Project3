@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class attackItem : IItem 
+public class attackItem : MonoBehaviour, IItem 
 {
 
     private float changeToAttack;
@@ -22,6 +22,6 @@ public class attackItem : IItem
     public void changeAttack(IPlayer player){
         changeToAttack = Random.Range(3,10);
         changeToAttack = changeToAttack/10;
-		//player.setAttack(player.getAttack() * (int)(1 + changeToAttack));
+		player.setAttack(player.getAttack() * (int)(1 + changeToAttack));
     }
 }

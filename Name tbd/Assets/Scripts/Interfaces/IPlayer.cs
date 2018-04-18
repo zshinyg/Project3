@@ -10,6 +10,10 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
 
 	public int Health = 100;
 
+    public bool Invinc = false;
+
+    public int Attak = 20;
+
     private Animator animator;
 
     public void Start()
@@ -19,12 +23,17 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
 
 	public void TakeDamage (int damageTaken)
     {
-        animator.SetTrigger("Player1_Hurt");
-        Health = Health - damageTaken;
-		if (isDead ())
+        if (!Invinc)
         {
-			Die ();
-		}
+            animator.SetTrigger("Player1_Hurt");
+            Health = Health - damageTaken;
+            Debug.Log(Health);
+            if (isDead())
+            {
+                Die();
+            }
+        }
+        else { Debug.Log(Health); }
 	}
 
 	public void Attack()
@@ -36,7 +45,7 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
 		{
 			if (hitColliders [i].tag == "Enemy") {
 				
-				hitColliders [i].GetComponent<IEnemy> ().TakeDamage(20);
+				hitColliders [i].GetComponent<IEnemy> ().TakeDamage(Attak);
 				Debug.Log(hitColliders [i].GetComponent<IEnemy> ().Health);
 			} 
 			i++;
@@ -50,7 +59,31 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
 
 	public void setHealth(int health)
     {
+        Health = health;
+        Debug.Log(Health);
 	}
+
+    public int getHealth()
+    {
+        return Health;
+    }
+
+    public void setAttack(int attack)
+    {
+        Attak = attack;
+        Debug.Log(Attak);
+    }
+
+    public int getAttack()
+    {
+        return Attak;
+    }
+
+    public void setInvincibility(bool invinc)
+    {
+        Invinc = true;
+        Debug.Log("I'm Invincible"+ Invinc);
+    }
 
 	public bool isDead ()
     {
@@ -71,7 +104,16 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
         //animator.enabled = false;
         //Destroy (this.gameObject);
     }
-
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        //Check the provided Collider2D parameter other to see if it is tagged "PickUp", if it is...
+        if (other.gameObject.CompareTag("Item"))
+        {
+            other.gameObject.SetActive(false);
+            other.gameObject.GetComponent<IItem>().Ability(this);
+            
+        }
+    }
 
 
 }

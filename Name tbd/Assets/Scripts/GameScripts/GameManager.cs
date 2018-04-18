@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour , IGameEventSystem
         DontDestroyOnLoad(this);
         DontDestroyOnLoad(mainCharacter);
 
-        level = 1;
+        level = 5;
         SpawnControlledPlayer();
         InitGame();
 

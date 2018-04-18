@@ -95,7 +95,7 @@ public class LevelManager : MonoBehaviour, IEventSystemHandler
          */
     void FixedUpdate()
     {
-        Debug.Log("isLoading is: " + isLoading);
+        //Debug.Log("isLoading is: " + isLoading);
         if (!(isLoading))
         {
             if (isLevelOver())
