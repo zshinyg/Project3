@@ -2,8 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class IPlayer: MonoBehaviour, ICharacter
+public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
 {
 	public GameObject[] Enemies;
 
@@ -66,6 +67,7 @@ public class IPlayer: MonoBehaviour, ICharacter
 	public void Die ()
     {
         animator.Play("Player1_Dead", 0, 0.9f);
+        ExecuteEvents.Execute<IGameEventSystem>(GameObject.Find("GameManager"), null, (x, y) => x.GameOver());
         //animator.enabled = false;
         //Destroy (this.gameObject);
     }

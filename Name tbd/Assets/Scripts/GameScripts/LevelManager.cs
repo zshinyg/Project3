@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Completed;
+using UnityEngine.EventSystems;
 
-public class LevelManager : MonoBehaviour
+public class LevelManager : MonoBehaviour, IEventSystemHandler
 {
 
     public LevelGenerator levelGenerator;
     [HideInInspector] public GameObject mainCharacter;
+
+    bool isLoading;
 
 
     /* Awake
@@ -17,11 +20,17 @@ public class LevelManager : MonoBehaviour
      */
     void Awake()
     {
-
         if (!GameObject.Find("LevelGenerator"))
         {
             Instantiate(levelGenerator);
         }
+        isLoading = true;
+        Debug.Log("|||||||||||||||");
+        Debug.Log("|||||||||||||||");
+        Debug.Log("AWAKE");
+        Debug.Log("|||||||||||||||");
+        Debug.Log("|||||||||||||||");
+
     }
 
     /* startLevel
@@ -31,10 +40,15 @@ public class LevelManager : MonoBehaviour
          */
     public void startLevel(int level, GameObject character)
     {
+       
         mainCharacter = character;
-        levelGenerator.SetupScene(level-1);
-        levelGenerator.PlacePlayer(mainCharacter);
-
+        levelGenerator.SetupScene(level, mainCharacter);
+        isLoading = false;
+        Debug.Log("******************");
+        Debug.Log("******************");
+        Debug.Log("isLoading: " + isLoading);
+        Debug.Log("******************");
+        Debug.Log("******************");
     }
 
     /* getNumEnemies
@@ -57,16 +71,23 @@ public class LevelManager : MonoBehaviour
          */
     public bool isLevelOver()
     {
+
+
         if (levelGenerator.getNumEnemies() <= 0)
         {
-            levelGenerator.ClearMap();
             return true;
         }
         else return false;
     }
 
 
+    void NextLevel()
+    {
+        GameObject target = GameObject.Find("GameManager");
+        //Debug.Log("Inside NextLevel of LevelManager");
+        ExecuteEvents.Execute<IGameEventSystem>(GameObject.Find("GameManager"), null, (x, y) => x.LevelOver());
 
+    }
     /* FixedUpdate
          * @param none
          * @return none
@@ -74,9 +95,15 @@ public class LevelManager : MonoBehaviour
          */
     void FixedUpdate()
     {
-
-        isLevelOver();
-        getNumEnemies();
+        Debug.Log("isLoading is: " + isLoading);
+        if (!(isLoading))
+        {
+            if (isLevelOver())
+            {
+                levelGenerator.ClearMap();
+                Invoke("NextLevel", 1);
+            }
+        }
 
     }
 }

@@ -59,6 +59,7 @@
      <Compile Include="Assets\Scripts\GameScripts\Map.cs" />
      <Compile Include="Assets\Scripts\Interfaces\ICharacter.cs" />
      <Compile Include="Assets\Scripts\Interfaces\IEnemy.cs" />
+     <Compile Include="Assets\Scripts\Interfaces\IGameEventSystem.cs" />
      <Compile Include="Assets\Scripts\Interfaces\IItem.cs" />
      <Compile Include="Assets\Scripts\Interfaces\IPlayer.cs" />
      <Compile Include="Assets\Scripts\Items\attackItem.cs" />

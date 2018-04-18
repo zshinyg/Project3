@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityStandardAssets._2D;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour , IGameEventSystem
 
 {
 
@@ -24,7 +24,6 @@ public class GameManager : MonoBehaviour
     private GameObject enemyImage;
     private int level;                                  //Current level number, expressed in game as "Day 1".
     private Transform camera;
-    private bool isLoading;
 
 
 
@@ -46,9 +45,9 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(this);
+        DontDestroyOnLoad(mainCharacter);
 
-        isLoading = true;
         level = 1;
         SpawnControlledPlayer();
         InitGame();
@@ -60,24 +59,14 @@ public class GameManager : MonoBehaviour
          * @param none
          * @return none
          * Called based on the clock time
-         * Checks to see if the level is over or if the game is over
+         * Updates UI
          */
     void Update()
     {
-
         ShowEnemies();
-        Debug.Log(levelManager.isLevelOver());
-        if (levelManager.isLevelOver())
-        {
-            NextLevel();
-            isLoading = false;
-        }
-        if (mainCharacter.GetComponent<IPlayer>().isDead())
-        {
-            GameOver();
-        }
-
     }
+
+
 
     /* Spawn
          * @param none
@@ -108,9 +97,10 @@ public class GameManager : MonoBehaviour
     void LevelTransition()
     {
         levelImage = GameObject.Find("LevelImage");
+        levelImage.SetActive(true);
         levelText = GameObject.Find("LevelText").GetComponent<Text>();
         levelText.text = "Level " + level;
-        levelImage.SetActive(true);
+
         Invoke("HideLevelImage", levelStartDelay);
     }
 
@@ -152,11 +142,10 @@ public class GameManager : MonoBehaviour
         {
             Instantiate(levelManager);
         }
-
+    
         LevelTransition();
         levelManager.startLevel(level, mainCharacter);
         ShowEnemies();
-        isLoading = false;
     }
 
 
@@ -165,13 +154,12 @@ public class GameManager : MonoBehaviour
          * @return none
          * Increments level
          */
-    void NextLevel()
+    public void LevelOver()
     {
         level++;
-        if (!isLoading)
-        {
-            SceneManager.LoadScene("Level");
-        }
+        Debug.Log(level);
+        //Debug.Log("Inside LevelOver of GameManager");
+        //SceneManager.LoadScene(1);
         InitGame();
     }
 
@@ -181,7 +169,7 @@ public class GameManager : MonoBehaviour
          * @return none
          * Loads teh game over scene
          */
-    void GameOver()
+    public void GameOver()
     {
         SceneManager.LoadScene("GameOver");
     }

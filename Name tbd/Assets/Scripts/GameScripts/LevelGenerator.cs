@@ -20,6 +20,8 @@ namespace Completed
 
         public int numEnemies;
 
+
+
         /* moveNextPos
          * @param Vector3 nextPos, Direction nextDir (enum)
          * @return Vector3
@@ -50,14 +52,74 @@ namespace Completed
         }
 
 
-
-        void FixedUpdate()
+        /* isBorder
+        * @param Vector3 nextPos
+        * @return bool
+        * checks to see if the next position to be placed is a border tile
+        * returns true if it is, false if it is not
+        */
+        bool isBorder(Vector3 nextPos)
         {
-            //GameObject[] EnemyArr = GameObject.FindGameObjectsWithTag ("Enemy");
-            //UpdateNumEnemies (EnemyArr.Length);
-            //Debug.Log ("Number of enemies inside LG: " + numEnemies);
+            if (nextPos.x == 0 || nextPos.x == map.columns || nextPos.y == 0 || nextPos.y == map.rows)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
 
         }
+
+
+        /* isFloor
+         * @param Vector3 nextPos
+         * @return bool
+         * Checks to see if the next position is a floor tile that has already been placed
+         * Returns true if it is already a floor, false otherwise
+         */
+        bool isFloor(Vector3 nextPos)
+        {
+            if (map.floorPositions.Contains(nextPos))
+            {           //checks if next position contains a floor
+                        //Debug.Log ("Contains floor");
+                return true;
+            }
+            else
+            {                                               //next position is clear
+                                                            //Debug.Log ("next Pos is clear");
+                return false;
+            }
+        }
+
+
+        /* SetupScene
+         * @param int level
+         * @return none
+         * Main function of LevelGenerator
+         * Responsible for calling all other functions that setup the map
+         */
+        public void SetupScene(int level, GameObject Player)
+        {
+            int columns = (int)(0.5 * level) + 5;
+            int rows = (int)(0.5 * level) + 5;
+            if (level >= 50)
+            {
+                columns = 30;
+                rows = 30;
+            }
+            //numEnemies = level;
+            //Creates the outer walls and floor.
+            numFloorTiles = (columns * rows) / 3;
+            map.MapSetup(columns, rows);
+            this.FloorSetup();
+            map.placeFloors();
+            map.placeWalls();
+            generateItems(level);
+            generateEnemies(level);
+            PlacePlayer(Player);
+        }
+
 
 
         /* FloorSetup
@@ -109,8 +171,6 @@ namespace Completed
         }
 
 
-
-
         /* generateEnemies
          * @param int numberOfEnemies
          * @return none
@@ -152,81 +212,12 @@ namespace Completed
             }
         }
 
-
-        /* isBorder
-         * @param Vector3 nextPos
-         * @return bool
-         * checks to see if the next position to be placed is a border tile
-         * returns true if it is, false if it is not
-         */
-        bool isBorder(Vector3 nextPos)
-        {
-            if (nextPos.x == 0 || nextPos.x == map.columns || nextPos.y == 0 || nextPos.y == map.rows)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
-        }
-
-
-        /* isFloor
-         * @param Vector3 nextPos
-         * @return bool
-         * Checks to see if the next position is a floor tile that has already been placed
-         * Returns true if it is already a floor, false otherwise
-         */
-        bool isFloor(Vector3 nextPos)
-        {
-            if (map.floorPositions.Contains(nextPos))
-            {           //checks if next position contains a floor
-                        //Debug.Log ("Contains floor");
-                return true;
-            }
-            else
-            {                                               //next position is clear
-                                                            //Debug.Log ("next Pos is clear");
-                return false;
-            }
-        }
-
-
-        /* SetupScene
-         * @param int level
-         * @return none
-         * Main function of LevelGenerator
-         * Responsible for calling all other functions that setup the map
-         */
-        public void SetupScene(int level)
-        {
-            int columns = (int)(0.5 * level) + 5;
-            int rows = (int)(0.5 * level) + 5;
-            if (level >= 50)
-            {
-                columns = 30;
-                rows = 30;
-            }
-            //numEnemies = level;
-            //Creates the outer walls and floor.
-            numFloorTiles = (columns * rows) / 3;
-            map.MapSetup(columns, rows);
-            this.FloorSetup();
-            map.placeFloors();
-            map.placeWalls();
-            generateItems(level);
-            generateEnemies(level);
-        }
-
-
         /* PlacePlayer
          * @param GameObject Player
          * @return none
          * Places the player randomly in the map outside of the range of enemies
          */
-        public void PlacePlayer(GameObject Player)
+        void PlacePlayer(GameObject Player)
         {
 
             bool tooClose;
@@ -234,20 +225,21 @@ namespace Completed
             playerPos = pickPlayerPostion();
 
             // Make sure that the player isn't placed too close to the enemy
-            do
-            {
-                tooClose = false;
-                foreach (Vector3 position in enemyPositions)
-                {
-                    delta = position - playerPos;
-                    if (Math.Abs(delta.magnitude) < 2)
-                    {
-                        tooClose = true;
-                        playerPos = pickPlayerPostion();
-                        break;
-                    }
-                }
-            } while (tooClose);
+            //do
+            //{
+            //    tooClose = false;
+            //    foreach (Vector3 position in enemyPositions)
+            //    {
+            //        delta = position - playerPos;
+            //        Debug.Log("Value of Delta: " + Math.Abs(delta.magnitude));
+            //        if (Math.Abs(delta.magnitude) < 2)
+            //        {
+            //            tooClose = true;
+            //            playerPos = pickPlayerPostion();
+            //        }
+            //        else break;
+            //    }
+            //} while (tooClose);
 
             Player.transform.position = playerPos;
         }
@@ -259,7 +251,8 @@ namespace Completed
          */
         Vector3 pickPlayerPostion()
         {
-            Vector3 pos = map.floorPositions[Random.Range(0, map.floorPositions.Count)];
+           // Debug.Log("Size of floor positions: " + map.floorPositions.Count);
+            Vector3 pos = map.floorPositions[Random.Range(0, map.floorPositions.Count-1)];
             map.floorPositions.Remove(pos);
             return pos;
 
