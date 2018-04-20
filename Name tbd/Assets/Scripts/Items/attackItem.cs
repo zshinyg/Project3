@@ -22,7 +22,6 @@ public class attackItem : MonoBehaviour, IItem
     public void changeAttack(IPlayer player){
         changeToAttack = Random.Range(3,10);
         changeToAttack = changeToAttack/10;
-        //Debug.Log(changeToAttack);
-		player.setAttack((int)(player.getAttack() * (1 + changeToAttack)));
+		player.setAttack(player.getAttack() * (int)(1 + changeToAttack));
     }
 }

@@ -30,13 +30,13 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
         {
             animator.SetTrigger("Player1_Hurt");
             Health = Health - damageTaken;
-            Debug.Log("Health Left:"+Health);
+            Debug.Log("My Health:"+Health);
             if (isDead())
             {
                 Die();
             }
         }
-        else { Debug.Log("Health Left:"+Health); }
+        else { Debug.Log("My Health:"+Health); }
 	}
 
 	public void Attack()
@@ -63,7 +63,7 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
 	public void setHealth(int health)
     {
         Health = health;
-        Debug.Log("New Health:"+Health);
+        Debug.Log("Health:"+Health);
 	}
 
     public int getHealth()
@@ -74,7 +74,7 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
     public void setAttack(int attack)
     {
         Attak = attack;
-        Debug.Log("New Attack:"+Attak);
+        Debug.Log("Attack:"+Attak);
     }
 
     public int getAttack()
