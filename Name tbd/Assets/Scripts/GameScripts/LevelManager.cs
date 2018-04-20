@@ -86,7 +86,7 @@ public class LevelManager : MonoBehaviour, IEventSystemHandler
     void FixedUpdate()
     {
         //Debug.Log("isLoading is: " + isLoading);
-        if (SceneManager.GetSceneByName("Level").isLoaded)
+        if (SceneManager.GetActiveScene().isLoaded)
         {
             if (isLevelOver())
             {
