@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Completed;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour, IEventSystemHandler
 {
@@ -10,7 +11,6 @@ public class LevelManager : MonoBehaviour, IEventSystemHandler
     public LevelGenerator levelGenerator;
     [HideInInspector] public GameObject mainCharacter;
 
-    bool isLoading;
 
 
     /* Awake
@@ -24,12 +24,7 @@ public class LevelManager : MonoBehaviour, IEventSystemHandler
         {
             Instantiate(levelGenerator);
         }
-        isLoading = true;
-        Debug.Log("|||||||||||||||");
-        Debug.Log("|||||||||||||||");
-        Debug.Log("AWAKE");
-        Debug.Log("|||||||||||||||");
-        Debug.Log("|||||||||||||||");
+       
 
     }
 
@@ -43,12 +38,7 @@ public class LevelManager : MonoBehaviour, IEventSystemHandler
        
         mainCharacter = character;
         levelGenerator.SetupScene(level, mainCharacter);
-        isLoading = false;
-        Debug.Log("******************");
-        Debug.Log("******************");
-        Debug.Log("isLoading: " + isLoading);
-        Debug.Log("******************");
-        Debug.Log("******************");
+    
     }
 
     /* getNumEnemies
@@ -96,7 +86,7 @@ public class LevelManager : MonoBehaviour, IEventSystemHandler
     void FixedUpdate()
     {
         //Debug.Log("isLoading is: " + isLoading);
-        if (!(isLoading))
+        if (SceneManager.GetActiveScene().isLoaded)
         {
             if (isLevelOver())
             {

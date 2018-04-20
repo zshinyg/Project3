@@ -22,8 +22,7 @@ public class GameManager : MonoBehaviour , IGameEventSystem
     private GameObject levelImage;
     private Text enemyText;
     private GameObject enemyImage;
-    private int level;                                  //Current level number, expressed in game as "Day 1".
-    private Transform camera;
+    private int level = 0;                                  //Current level number, expressed in game as "Day 1".
 
 
 
@@ -46,11 +45,7 @@ public class GameManager : MonoBehaviour , IGameEventSystem
         }
 
         DontDestroyOnLoad(this);
-        DontDestroyOnLoad(mainCharacter);
-
-        level = 5;
         SpawnControlledPlayer();
-        InitGame();
 
     }
 
@@ -67,16 +62,6 @@ public class GameManager : MonoBehaviour , IGameEventSystem
     }
 
 
-
-    /* Spawn
-         * @param none
-         * @return none
-         * Places the camera of the player on the main camera
-         */
-    private void Spawn()
-    {
-        camera.parent = Camera.main.transform;
-    }
 
     /* SpawnControlledPlayer
          * @param none
@@ -156,11 +141,8 @@ public class GameManager : MonoBehaviour , IGameEventSystem
          */
     public void LevelOver()
     {
-        level++;
-        Debug.Log(level);
         //Debug.Log("Inside LevelOver of GameManager");
-        //SceneManager.LoadScene(1);
-        InitGame();
+        SceneManager.LoadScene(1);
     }
 
 
@@ -175,7 +157,22 @@ public class GameManager : MonoBehaviour , IGameEventSystem
     }
 
 
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnLevelFinishedLoading;
+    }
 
 
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnLevelFinishedLoading;
+    }
+
+
+    void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
+    {
+        level++;
+        InitGame();
+    }
 
 }
