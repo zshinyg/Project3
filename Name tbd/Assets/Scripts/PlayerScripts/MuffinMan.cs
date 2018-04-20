@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MuffinMan : IEnemy
 {
-    //public int Health;
+    public int Health;
 
     private Animator animator;
     private Vector3 delta;

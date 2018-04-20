@@ -69,6 +69,7 @@
      <Compile Include="Assets\Scripts\MainMenu.cs" />
      <Compile Include="Assets\Scripts\PlayerScripts\EnemyAI.cs" />
      <Compile Include="Assets\Scripts\PlayerScripts\Gingy.cs" />
+     <Compile Include="Assets\Scripts\PlayerScripts\Jack.cs" />
      <Compile Include="Assets\Scripts\PlayerScripts\MouseMove2D.cs" />
      <Compile Include="Assets\Scripts\PlayerScripts\MovingObject.cs" />
      <Compile Include="Assets\Scripts\PlayerScripts\MuffinMan.cs" />
