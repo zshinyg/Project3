@@ -155,7 +155,10 @@ public class GameManager : MonoBehaviour , IGameEventSystem
          */
     public void GameOver()
     {
+        level = 0;
+        Destroy(gameObject);
         SceneManager.LoadScene("GameOver");
+        SceneManager.UnloadSceneAsync("Level");
     }
 
 
