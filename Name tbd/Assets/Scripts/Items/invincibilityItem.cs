@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class invincibilityItem : MonoBehaviour, IItem 
 {
-
+    private int duration; 
     private int durationLength;
 
     public void Ability(IPlayer player){
@@ -19,6 +19,8 @@ public class invincibilityItem : MonoBehaviour, IItem
     }
 
     private void changeInviciblity(IPlayer player){
+        duration = Duration();
         player.setInvincibility(true);
+        Debug.Log("Duration: " + duration);
     }
 }

@@ -25,6 +25,7 @@ public class healthItem : MonoBehaviour, IItem
         }
 
         changeToHealth = changeToHealth*10;
+        //Debug.Log(changeToHealth);
 		player.setHealth(player.getHealth() + changeToHealth);
     }
 }
