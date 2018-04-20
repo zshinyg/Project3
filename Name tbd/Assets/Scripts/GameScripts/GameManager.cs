@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour , IGameEventSystem
         }
 
         DontDestroyOnLoad(this);
+        DontDestroyOnLoad(mainCharacter);
         SpawnControlledPlayer();
 
     }
@@ -70,7 +71,7 @@ public class GameManager : MonoBehaviour , IGameEventSystem
          */
     private void SpawnControlledPlayer()
     {
-        mainCharacter = (GameObject)Instantiate(mainCharacter) as GameObject;
+        mainCharacter = Instantiate(mainCharacter) as GameObject;
     }
 
 
@@ -127,7 +128,8 @@ public class GameManager : MonoBehaviour , IGameEventSystem
         {
             Instantiate(levelManager);
         }
-    
+
+        mainCharacter = GameObject.FindGameObjectWithTag("Player");
         LevelTransition();
         levelManager.startLevel(level, mainCharacter);
         ShowEnemies();
