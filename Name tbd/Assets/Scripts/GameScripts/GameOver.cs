@@ -7,6 +7,7 @@ public class GameOver : MonoBehaviour {
 
     private GameObject[] leaderboardText;
     private GameObject gameOverText;
+    private List<string> vals;
 
     public void Awake()
     {
@@ -31,6 +32,16 @@ public class GameOver : MonoBehaviour {
         {
             text.SetActive(true);
         }
+        UpdateLeaderboard();
+    }
+
+
+    private void UpdateLeaderboard()
+    {
+        vals = SaveLoad.Load();
+        List<string[]> stats = new List<string[]>();
+        foreach (string stat in vals) stats.Add(stat.Split(','));
+        
     }
 
 	/**
