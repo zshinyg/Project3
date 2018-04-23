@@ -11,6 +11,8 @@ public class GameOver : MonoBehaviour {
 
     public void Awake()
     {
+        GameObject music = GameObject.FindGameObjectWithTag("Music");
+        Destroy(music);
         leaderboardText = GameObject.FindGameObjectsWithTag("Leaderboard");
         gameOverText = GameObject.Find("GameOverText");
 

@@ -51,12 +51,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\GameMusic.cs" />
      <Compile Include="Assets\Scripts\GameScripts\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\GameScripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\GameScripts\GameOver.cs" />
      <Compile Include="Assets\Scripts\GameScripts\LevelGenerator.cs" />
      <Compile Include="Assets\Scripts\GameScripts\LevelManager.cs" />
      <Compile Include="Assets\Scripts\GameScripts\Map.cs" />
+     <Compile Include="Assets\Scripts\GameScripts\SaveLoad.cs" />
      <Compile Include="Assets\Scripts\Interfaces\ICharacter.cs" />
      <Compile Include="Assets\Scripts\Interfaces\IEnemy.cs" />
      <Compile Include="Assets\Scripts\Interfaces\IGameEventSystem.cs" />
