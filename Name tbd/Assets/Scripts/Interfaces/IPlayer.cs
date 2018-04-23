@@ -12,7 +12,15 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
 
     public bool Invinc;
 
+    public int InvincDur;
+
+    public int Icount;
+
     public int Attak;
+
+    public int AttakDur;
+
+    public int Acount;
 
     private Animator animator;
 
@@ -22,6 +30,10 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
         setHealth(100);
         setAttack(20);
         setInvincibility(false);
+        setADuration(0);
+        setIDuration(0);
+        Icount = 0;
+        Acount = 0;
     }
 
 	public void TakeDamage (int damageTaken)
@@ -88,7 +100,29 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
         Debug.Log("Invincible:"+ Invinc);
     }
 
-	public bool isDead ()
+    public void setIDuration(int dur)
+    {
+        InvincDur = (dur*50);
+        Debug.Log("Invincibility Duration:" + InvincDur);
+    }
+
+    public int getIDuration()
+    {
+        return InvincDur;
+    }
+
+    public void setADuration(int dur)
+    {
+        AttakDur = (dur*50);
+        Debug.Log("Attack Duration:" + AttakDur);
+    }
+
+    public int getADuration()
+    {
+        return AttakDur;
+    }
+
+    public bool isDead ()
     {
 		if (Health <= 0)
         {
@@ -118,6 +152,34 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
         }
     }
 
-
+    void FixedUpdate()
+    {
+        if (getIDuration() > 0)
+        {
+            if (Icount <= getIDuration())
+            {
+                Icount = Icount + 1;
+            }
+            else
+            {
+                setInvincibility(false);
+                setIDuration(0);
+                Icount = 0;
+            }
+        }
+        if (getADuration() > 0)
+        {
+            if (Acount <= getADuration())
+            {
+                Acount = Acount + 1;
+            }
+            else
+            {
+                setAttack(20);
+                setADuration(0);
+                Acount = 0;
+            }
+        }
+    }
 }
 

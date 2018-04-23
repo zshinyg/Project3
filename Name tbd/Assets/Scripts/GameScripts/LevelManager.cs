@@ -94,7 +94,7 @@ public class LevelManager : MonoBehaviour, IEventSystemHandler
                 Invoke("NextLevel", 1);
             }
         }
-
+        
     }
 
 

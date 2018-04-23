@@ -7,7 +7,7 @@ public interface IItem
 
 	void Ability (IPlayer player);
 
-	int Duration();
+	void Duration(IPlayer player);
 
 }
 

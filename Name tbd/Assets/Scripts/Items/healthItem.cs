@@ -13,8 +13,8 @@ public class healthItem : MonoBehaviour, IItem
           changeHealth(player);
     }
 
-    public int Duration(){
-        return 0;
+    public void Duration(IPlayer player){
+     
     }
 
     private void changeHealth(IPlayer player){
