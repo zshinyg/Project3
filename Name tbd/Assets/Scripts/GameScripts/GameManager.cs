@@ -155,6 +155,7 @@ public class GameManager : MonoBehaviour , IGameEventSystem
          */
     public void GameOver()
     {
+        Destroy(gameObject);
         SceneManager.LoadScene("GameOver");
     }
 
