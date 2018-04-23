@@ -7,12 +7,6 @@ public static class SaveLoad {
 
     public static List<string> leaderboard;
 
-
-    /* Save
-     * @param List<string> 
-     * @return none
-     * Takes in a list of strings and saves it to file
-     */
     public static void Save(List<string> stats)
     {
         try
@@ -29,12 +23,6 @@ public static class SaveLoad {
 
     }
 
-
-    /* Load()
-     * @param none
-     * @return List<string>
-     * Reads the scoreboard list and returns a list of the scoreboard
-     */
     public static List<string> Load()
     {
         leaderboard.Clear();
