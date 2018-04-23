@@ -11,12 +11,13 @@ public class attackItem : MonoBehaviour, IItem
 
     public void Ability(IPlayer player){
         changeAttack(player);
+        Duration(player);
     }
 
-    public int Duration(){
+    public void Duration(IPlayer player){
         durationLength = Random.Range(1,3);
         durationLength = durationLength * 10;
-        return durationLength;
+        player.setADuration(durationLength);
     }
 
     public void changeAttack(IPlayer player){
