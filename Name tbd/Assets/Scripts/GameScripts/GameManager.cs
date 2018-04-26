@@ -159,19 +159,33 @@ public class GameManager : MonoBehaviour , IGameEventSystem
         SceneManager.LoadScene("GameOver");
     }
 
-
+    /* OnEnable
+     * @param none
+     * @return none
+     * Called by the Unity event system when the scene is enabled to start level
+     */
     void OnEnable()
     {
         SceneManager.sceneLoaded += OnLevelFinishedLoading;
     }
 
-
+    /* OnDisable
+     * @param none
+     * @return none
+     * Called by the unity event system when the scene is disabled to iterate to next level
+     */
     void OnDisable()
     {
         SceneManager.sceneLoaded -= OnLevelFinishedLoading;
     }
 
 
+
+    /* OnLevelFinishedLoading
+     * @param Scene, LoadSceneMode
+     * @return none
+     * When the level is enabled/loaded, this scene method is called and iterates to the next level
+     */
     void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
     {
         level++;

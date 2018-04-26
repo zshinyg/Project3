@@ -81,6 +81,9 @@
      <Compile Include="Assets\Scripts\PlayerScripts\Player1Controller.cs" />
      <Compile Include="Assets\Scripts\PlayerScripts\Player2Controller.cs" />
      <Compile Include="Assets\Scripts\PlayerScripts\ShadowGingy.cs" />
+     <Compile Include="Assets\Scripts\TestScripts\TestLevel.cs" />
+     <Compile Include="Assets\Scripts\TestScripts\TestLoader.cs" />
+     <Compile Include="Assets\Scripts\TestScripts\TestManager.cs" />
      <Compile Include="Assets\Simple Health Bar\_Asteroids Example\Scripts\AsteroidController.cs" />
      <Compile Include="Assets\Simple Health Bar\_Asteroids Example\Scripts\GameManager.cs" />
      <Compile Include="Assets\Simple Health Bar\_Asteroids Example\Scripts\HealthPickupController.cs" />

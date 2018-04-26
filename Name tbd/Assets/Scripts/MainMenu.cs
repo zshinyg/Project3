@@ -22,5 +22,15 @@ public class MainMenu : MonoBehaviour {
 	public void QuitGame(){
 		Application.Quit ();
 	}
+
+    /* TestMode
+     * @param none
+     * @return none
+     * Allows the user to go into test mode of the game
+     */
+     public void TestMode()
+    {
+        SceneManager.LoadScene("TestMode");
+    }
 	
 }
