@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviour {
 	 * @Return None
 	**/
 	public void PlayGame(){
-		SceneManager.LoadScene ("Level");
+		SceneManager.LoadScene ("PlayerSelector");
 	}
 
 	/**

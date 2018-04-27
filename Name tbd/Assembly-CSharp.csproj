@@ -59,6 +59,7 @@
      <Compile Include="Assets\Scripts\GameScripts\LevelManager.cs" />
      <Compile Include="Assets\Scripts\GameScripts\Map.cs" />
      <Compile Include="Assets\Scripts\GameScripts\SaveLoad.cs" />
+     <Compile Include="Assets\Scripts\GameVariables.cs" />
      <Compile Include="Assets\Scripts\Interfaces\ICharacter.cs" />
      <Compile Include="Assets\Scripts\Interfaces\IEnemy.cs" />
      <Compile Include="Assets\Scripts\Interfaces\IGameEventSystem.cs" />
@@ -81,6 +82,7 @@
      <Compile Include="Assets\Scripts\PlayerScripts\Player1Controller.cs" />
      <Compile Include="Assets\Scripts\PlayerScripts\Player2Controller.cs" />
      <Compile Include="Assets\Scripts\PlayerScripts\ShadowGingy.cs" />
+     <Compile Include="Assets\Scripts\PlayerSelector.cs" />
      <Compile Include="Assets\Scripts\TestScripts\TestLevel.cs" />
      <Compile Include="Assets\Scripts\TestScripts\TestLoader.cs" />
      <Compile Include="Assets\Scripts\TestScripts\TestManager.cs" />
