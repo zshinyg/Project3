@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
 
+    public void Awake()
+    {
+        GameObject music = GameObject.FindGameObjectWithTag("Music");
+        Destroy(music);
+    }
 	/**
 	 * Loads the scene to play the game
 	 * @Param None
