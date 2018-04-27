@@ -46,11 +46,14 @@ public class Jack : IEnemy
         {
             if (doOnce < 33)
             {
+                //Debug.Log("Dead: " + doOnce);
+                //animator.Play("Jack_Dead");
+                //animation["Jack_Dead"].wrapMode = WrapMode.Once;
                 doOnce++;
             }
             else
             {
-                //animator.Play("Jack_Dead", 0, 0.9f);
+                animator.Play("Jack_Dead", 0, 0.9f);
             }
 
         }

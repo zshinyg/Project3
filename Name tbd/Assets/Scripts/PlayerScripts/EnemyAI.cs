@@ -13,7 +13,10 @@ public class EnemyAI : MonoBehaviour {
 	private int attackDelay;
 
     MuffinMan muffinMan;
-
+    Jack jack;
+    public string enemyName;
+    IEnemy myEnemy;
+    
 
     /* Start
      * @param none
@@ -23,10 +26,28 @@ public class EnemyAI : MonoBehaviour {
     void Start()
     {
 		canMove = false;
-		//Debug.Log ("Started");
-		attackDelay = 0;
-        
-        muffinMan = GetComponent<MuffinMan>();
+        //Debug.Log ("Started");
+        attackDelay = 0;
+
+        IEnemy[] scripts = this.GetComponents<IEnemy>();
+
+        foreach (IEnemy ie in scripts)
+        {
+            Debug.Log(ie.GetType().Name);
+            enemyName = ie.GetType().Name;
+            myEnemy = ie;
+        }
+
+        if (enemyName == "MuffinMan")
+        {
+            //myEnemy = this.GetComponent<MuffinMan>();
+            muffinMan = GetComponent<MuffinMan>();
+        }
+        else if (enemyName == "Jack")
+        {
+            //myEnemy = this.GetComponent<Jack>();
+            jack = GetComponent<Jack>();
+        }
     }
 
 
@@ -55,7 +76,16 @@ public class EnemyAI : MonoBehaviour {
             {
                 this.transform.position += delta * moveSpeed * Time.deltaTime;
 
-                muffinMan.SetMove(canMove);
+                if (enemyName == "MuffinMan")
+                {
+                    muffinMan.SetMove(canMove);
+                }
+                else if (enemyName == "Jack")
+                {
+                    jack.SetMove(canMove);
+                }
+
+                //muffinMan.SetMove(canMove);
 
                 if (attackDelay >= 50)
                 {
@@ -92,9 +122,20 @@ public class EnemyAI : MonoBehaviour {
 		Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 0.5f);
 		int i = 0;
 		while (i < hitColliders.Length) {
-			if (hitColliders [i].tag == "Player") {
+			if (hitColliders [i].tag == "Player")
+            {
+                
+                if (enemyName == "MuffinMan")
+                {
+                    muffinMan.GetComponent<MuffinMan>().Attack();
+                }
+                else if (enemyName == "Jack")
+                {
+                    jack.GetComponent<Jack>().Attack();
+                }
+                
+                //muffinMan.GetComponent<MuffinMan>().Attack();
 
-                GetComponent<MuffinMan>().Attack();
                 hitColliders [i].GetComponent<IPlayer>().TakeDamage (5);
                 Debug.Log (hitColliders [i].GetComponent<IPlayer> ().Health);
 			} 

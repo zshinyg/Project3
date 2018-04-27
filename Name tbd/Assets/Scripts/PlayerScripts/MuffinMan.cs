@@ -54,7 +54,6 @@ public class MuffinMan : IEnemy
             else
             {
                 animator.Play("MuffinMan_Dead", 0, 0.9f);
-                //animator.enabled = false;
             }
 
         }

@@ -5,31 +5,57 @@ using UnityEngine;
 
 public class IEnemy : MonoBehaviour, ICharacter
 {
-
+    //MuffinMan muffinMan;
+    //Jack jack;
 
     public int Health = 100;
-
     int doOnce = 0;
 
     private Animator animator;
+    public string enemyName;
 
     void Start()
     {
         animator = GetComponent<Animator>();
+        //muffinMan = this.GetComponent<MuffinMan>();
+        //jack = this.GetComponent<Jack>();
+
+        IEnemy[] scripts = this.GetComponents<IEnemy>();
+
+        foreach (IEnemy ie in scripts)
+        {
+            Debug.Log(ie.GetType().Name);
+            enemyName = ie.GetType().Name;
+        }
     }
+
+    //public void SetMove(bool value)
+    //{
+    //    muffinMan.SetMove(value);
+    //    jack.SetMove(value);
+    //}
 
     public void TakeDamage(int damageTaken)
     {
         if (isDead() == false)
         {
-            animator.SetTrigger("MuffinMan_Hurt");
+            if (enemyName == "MuffinMan")
+            {
+                animator.SetTrigger("MuffinMan_Hurt");
+            }
+            else if (enemyName == "Jack")
+            {
+                animator.SetTrigger("Jack_Hurt");
+            }
+            
             Health = Health - damageTaken;
         }
     }
 
     public void Attack()
     {
-
+        //muffinMan.Attack();
+        //jack.Attack();
     }
 
     public void setSpeed(int speed)
@@ -58,7 +84,14 @@ public class IEnemy : MonoBehaviour, ICharacter
         if (doOnce == 0)
         {
             //Debug.Log("Now Dead");
-            animator.SetTrigger("MuffinMan_Dead");
+            if (enemyName == "MuffinMan")
+            {
+                animator.SetTrigger("MuffinMan_Dead");
+            }
+            else if (enemyName == "Jack")
+            {
+                animator.SetTrigger("Jack_Dead");
+            }
             doOnce = 1;
             //Destroy(GetComponent<BoxCollider2D>());
         }

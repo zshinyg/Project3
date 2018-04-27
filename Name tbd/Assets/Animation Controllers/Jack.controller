@@ -570,7 +570,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: JackRight
-  m_Speed: 0.375
+  m_Speed: 0.625
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101721016999029820}
@@ -674,7 +674,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: JackUp
-  m_Speed: 0.5
+  m_Speed: 0.625
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101629739922621906}
@@ -700,7 +700,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: JackDown
-  m_Speed: 0.5
+  m_Speed: 0.625
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101755240992817796}
@@ -807,7 +807,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: JackLeft
-  m_Speed: 0.375
+  m_Speed: 0.625
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101048851576295336}
