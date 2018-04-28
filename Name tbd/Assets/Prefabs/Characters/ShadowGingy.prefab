@@ -23,11 +23,11 @@ GameObject:
   - component: {fileID: 50728664788022520}
   - component: {fileID: 61865985553968202}
   - component: {fileID: 114501735805715594}
-  - component: {fileID: 114396481407985552}
   - component: {fileID: 212625362339612522}
   - component: {fileID: 114327301467995020}
   - component: {fileID: 114245457492567888}
   - component: {fileID: 114977855933909496}
+  - component: {fileID: 114484032468491240}
   m_Layer: 12
   m_Name: ShadowGingy
   m_TagString: Player
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114396481407985552
+--- !u!114 &114484032468491240
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -136,7 +136,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1291183566906026}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2698575e745c77e4a8284f6e17aab98b, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a400934d8ad8034fbd23460c7032b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5

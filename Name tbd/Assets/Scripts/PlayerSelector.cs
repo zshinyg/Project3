@@ -8,13 +8,13 @@ public class PlayerSelector : MonoBehaviour {
 	public void SelectGingy()
     {
         GameVariables.CharacterName = "Gingy";
-        Invoke("StartGame", .5f);
+        Invoke("StartGame", .2f);
     }
 
     public void SelectShadowGingy()
     {
         GameVariables.CharacterName = "ShadowGingy";
-        Invoke("StartGame", .5f);
+        Invoke("StartGame", .2f);
     }
 
     private void StartGame()

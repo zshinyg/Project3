@@ -16,7 +16,7 @@ public static class GameVariables {
         }
         set
         {
-            characterName = CharacterName;
+            characterName = value;
         }
     }
 
@@ -28,7 +28,7 @@ public static class GameVariables {
         }
         set
         {
-            levelReached = LevelReached;
+            levelReached = value;
         }
     }
 
@@ -40,7 +40,7 @@ public static class GameVariables {
         }
         set
         {
-            levelDuration = LevelDuration;
+            levelDuration = value;
         }
     }
 

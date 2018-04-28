@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour , IGameEventSystem
     public float levelStartDelay = 2f;
     public LevelManager levelManager;
     public GameObject mainCharacter;
+    public GameObject[] mainCharacters;
 
 
     private Text levelText;
@@ -44,12 +45,27 @@ public class GameManager : MonoBehaviour , IGameEventSystem
             Destroy(gameObject);
         }
 
+        DiscernMainCharacter();
         DontDestroyOnLoad(this);
         DontDestroyOnLoad(mainCharacter);
         SpawnControlledPlayer();
 
     }
 
+
+    /* DiscernMainCharacter
+     * @param none
+     * @return none
+     * Determines which GameObject in the array to use based on the value of CharacterName
+     */
+    private void DiscernMainCharacter()
+    {
+        if (GameVariables.CharacterName == "Gingy")   mainCharacter = mainCharacters[0];
+        
+        else if (GameVariables.CharacterName == "ShadowGingy")   mainCharacter = mainCharacters[1];
+
+       
+    }
 
     /* Update
          * @param none
@@ -71,6 +87,7 @@ public class GameManager : MonoBehaviour , IGameEventSystem
          */
     private void SpawnControlledPlayer()
     {
+        Debug.Log(mainCharacter);
         mainCharacter = Instantiate(mainCharacter) as GameObject;
     }
 
