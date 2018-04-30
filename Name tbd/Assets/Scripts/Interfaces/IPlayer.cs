@@ -18,6 +18,7 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
 	Image healthBar;
 	public int maxHealth = 100;
 
+    public string playerName;
 
     private Animator animator;
 
@@ -34,13 +35,27 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
 		healthBar = GetComponent<Image> ();
 		Health = maxHealth;
 
+        IPlayer[] scripts = this.GetComponents<IPlayer>();
+
+        Debug.Log(scripts[0].GetType().Name);
+        playerName = scripts[0].GetType().Name;
     }
 
 	public void TakeDamage (int damageTaken)
     {
         if (!Invinc)
         {
-            animator.SetTrigger("Player1_Hurt");
+            if (playerName == "Gingy")
+            {
+                animator.SetTrigger("Player1_Hurt");
+            }
+            else if (playerName == "ShadowGingy")
+            {
+                animator.SetTrigger("Player2_Hurt");
+            }
+
+            //animator.SetTrigger("Player1_Hurt");
+            
             Health = Health - damageTaken;
             Debug.Log("My Health:"+Health);
             if (isDead())
@@ -136,7 +151,17 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
 
 	public void Die ()
     {
-        animator.Play("Player1_Dead", 0, 0.9f);
+        if (playerName == "Gingy")
+        {
+            animator.Play("Player1_Dead", 0, 0.9f);
+        }
+        else if (playerName == "ShadowGingy")
+        {
+            animator.Play("Player1_Dead", 0, 0.9f);
+        }
+
+        //animator.Play("Player1_Dead", 0, 0.9f);
+
         ExecuteEvents.Execute<IGameEventSystem>(GameObject.Find("GameManager"), null, (x, y) => x.GameOver());
         //animator.enabled = false;
         //Destroy (this.gameObject);

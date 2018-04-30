@@ -52,17 +52,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedFloors: 0
-  numFloorTiles: 19
+  numFloorTiles: 38
   map: {fileID: 114040723668437318, guid: ad9c15165b83848dd88a6004246be925, type: 2}
-  numItems: 1
+  numItems: 2
   Items:
   - {fileID: 1221809986104870, guid: 9663bcd5e274d43739a6258a28714b4f, type: 2}
   - {fileID: 1196637864205324, guid: 4662eb74b54e64158ba800f2d13b569f, type: 2}
   - {fileID: 1251640448650908, guid: 953dd6894a87d4b70909036f31928d54, type: 2}
-  playerPos: {x: 5, y: 4, z: 0}
-  Enemy: {fileID: 1987323495637506, guid: b77332dd23eee47138177fb882d69750, type: 2}
+  playerPos: {x: 4, y: 5, z: 0}
+  Enemy1: {fileID: 1987323495637506, guid: b77332dd23eee47138177fb882d69750, type: 2}
+  Enemy2: {fileID: 1626278639558132, guid: cad614535a351c4459e175ea6ec9e927, type: 2}
   enemyPositions:
-  - {x: 1, y: 5, z: 0}
-  - {x: 3, y: 2, z: 0}
-  - {x: 4, y: 4, z: 0}
+  - {x: 4, y: 5, z: 0}
+  - {x: 3, y: 6, z: 0}
+  - {x: 5, y: 6, z: 0}
+  - {x: 7, y: 6, z: 0}
+  - {x: 2, y: 5, z: 0}
+  - {x: 5, y: 5, z: 0}
+  - {x: 5, y: 6, z: 0}
   numEnemies: 10
+  myLevel: 0
