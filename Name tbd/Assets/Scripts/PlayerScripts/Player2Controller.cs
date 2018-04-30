@@ -42,13 +42,13 @@ public class Player2Controller : MonoBehaviour
 	**/
     void FixedUpdate()
     {
-        //Vector2 move = new Vector2(CrossPlatformInputManager.GetAxis("Horizontal"), CrossPlatformInputManager.GetAxis("Vertical"));
+        Vector2 move = new Vector2(CrossPlatformInputManager.GetAxis("Horizontal"), CrossPlatformInputManager.GetAxis("Vertical"));
         bool isAttacking = CrossPlatformInputManager.GetButtonDown("Attack");
 
         enemyTarget = GameObject.FindGameObjectWithTag("Enemy");
 
         //Debug.Log(isAttacking);
-        /*if (move == Vector2.zero)
+        if (move == Vector2.zero)
         {
             //myPlayer.AddForce(-myPlayer.velocity);
         }
@@ -85,11 +85,11 @@ public class Player2Controller : MonoBehaviour
             animator.Play("Player2Down");
         }
         else
-        {*/
+        {
             animator.SetTrigger("Player2Idle");
             //animator.Play("Player1Idle");
             myPlayer.velocity = Vector3.zero;
-        //}
+        }
 
 
     }
