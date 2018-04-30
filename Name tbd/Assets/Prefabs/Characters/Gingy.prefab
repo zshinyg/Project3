@@ -26,7 +26,6 @@ GameObject:
   - component: {fileID: 114054238130826632}
   - component: {fileID: 212453050442291736}
   - component: {fileID: 114760515023230684}
-  - component: {fileID: 114596331944891430}
   - component: {fileID: 114959482898654482}
   - component: {fileID: 82826031623372354}
   m_Layer: 11
@@ -207,27 +206,6 @@ MonoBehaviour:
   source: {fileID: 0}
   triggerCount: 1
   repeatTrigger: 0
---- !u!114 &114596331944891430
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1108154082680840}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98e822591039d4307afdd0cf2b368be3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Enemies: []
-  Health: 100
-  Invinc: 0
-  InvincDur: 0
-  Icount: 0
-  Attak: 0
-  AttakDur: 0
-  Acount: 0
-  playerName: 
-  Health: 100
 --- !u!114 &114760515023230684
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -251,14 +229,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemies: []
-  Health: 100
   Invinc: 0
   InvincDur: 0
   Icount: 0
   Attak: 0
   AttakDur: 0
   Acount: 0
-  playerName: 
+  maxHealth: 100
 --- !u!212 &212453050442291736
 SpriteRenderer:
   m_ObjectHideFlags: 1

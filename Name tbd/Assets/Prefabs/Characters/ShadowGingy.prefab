@@ -26,7 +26,6 @@ GameObject:
   - component: {fileID: 114755051805024404}
   - component: {fileID: 212625362339612522}
   - component: {fileID: 114327301467995020}
-  - component: {fileID: 114245457492567888}
   - component: {fileID: 114977855933909496}
   m_Layer: 11
   m_Name: ShadowGingy
@@ -97,27 +96,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114245457492567888
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1291183566906026}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 399b4caebf7a9c04a85f0921d3bc0838, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Enemies: []
-  Health: 100
-  Invinc: 0
-  InvincDur: 0
-  Icount: 0
-  Attak: 0
-  AttakDur: 0
-  Acount: 0
-  playerName: 
-  Health: 100
 --- !u!114 &114327301467995020
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -170,14 +148,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemies: []
-  Health: 100
   Invinc: 0
   InvincDur: 0
   Icount: 0
   Attak: 0
   AttakDur: 0
   Acount: 0
-  playerName: 
+  maxHealth: 100
 --- !u!212 &212625362339612522
 SpriteRenderer:
   m_ObjectHideFlags: 1
