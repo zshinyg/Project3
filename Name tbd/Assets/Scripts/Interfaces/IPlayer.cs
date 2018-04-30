@@ -3,22 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
 {
 	public GameObject[] Enemies;
-
-	public int Health;
+	public  static int Health;
     public bool Invinc;
     public int InvincDur;
     public int Icount;
-
     public int Attak;
     public int AttakDur;
     public int Acount;
+	Image healthBar;
+	public int maxHealth = 100;
+
 
     private Animator animator;
-    public string playerName;
 
     public void Start()
 	{
@@ -30,28 +31,16 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
         setIDuration(0);
         Icount = 0;
         Acount = 0;
+		healthBar = GetComponent<Image> ();
+		Health = maxHealth;
 
-        IPlayer[] scripts = this.GetComponents<IPlayer>();
-
-        Debug.Log(scripts[0].GetType().Name);
-        playerName = scripts[0].GetType().Name;
     }
 
 	public void TakeDamage (int damageTaken)
     {
         if (!Invinc)
         {
-            if (playerName == "Gingy")
-            {
-                animator.SetTrigger("Player1_Hurt");
-            }
-            else if (playerName == "ShadowGingy")
-            {
-                animator.SetTrigger("Player2_Hurt");
-            }
-
-            //animator.SetTrigger("Player1_Hurt");
-
+            animator.SetTrigger("Player1_Hurt");
             Health = Health - damageTaken;
             Debug.Log("My Health:"+Health);
             if (isDead())
@@ -147,17 +136,7 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
 
 	public void Die ()
     {
-        if (playerName == "Gingy")
-        {
-            animator.Play("Player1_Dead", 0, 0.9f);
-        }
-        else if (playerName == "ShadowGingy")
-        {
-            animator.Play("Player1_Dead", 0, 0.9f);
-        }
-
-        //animator.Play("Player1_Dead", 0, 0.9f);
-
+        animator.Play("Player1_Dead", 0, 0.9f);
         ExecuteEvents.Execute<IGameEventSystem>(GameObject.Find("GameManager"), null, (x, y) => x.GameOver());
         //animator.enabled = false;
         //Destroy (this.gameObject);
@@ -175,6 +154,7 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
 
     void FixedUpdate()
     {
+		healthBar.fillAmount = Health / maxHealth;
         if (getIDuration() > 0)
         {
             if (Icount <= getIDuration())
