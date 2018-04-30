@@ -8,7 +8,7 @@ public class EnemyAI : MonoBehaviour, ITestEventSystem {
 	public GameObject Player;					// Player object from heirarchy
 	private Transform playerPos;				// Player position
 	private Vector3 delta; 						// Distance FROM enemy TO player
-	int moveSpeed = 1;
+	float moveSpeed = 1.0f;
 	private bool canMove;
 	private int attackDelay;
 
@@ -40,13 +40,13 @@ public class EnemyAI : MonoBehaviour, ITestEventSystem {
 
         if (enemyName == "MuffinMan")
         {
-            //myEnemy = this.GetComponent<MuffinMan>();
             muffinMan = GetComponent<MuffinMan>();
+            moveSpeed = 1.0f;
         }
         else if (enemyName == "Jack")
         {
-            //myEnemy = this.GetComponent<Jack>();
             jack = GetComponent<Jack>();
+            moveSpeed = 0.5f;
         }
     }
 
@@ -79,28 +79,32 @@ public class EnemyAI : MonoBehaviour, ITestEventSystem {
                 if (enemyName == "MuffinMan")
                 {
                     muffinMan.SetMove(canMove);
+                    if (attackDelay >= 50)
+                    {
+                        attackDelay = 0;
+                        TryAttack();
+
+                    }
                 }
                 else if (enemyName == "Jack")
                 {
                     jack.SetMove(canMove);
+                    if (attackDelay >= 100)
+                    {
+                        attackDelay = 0;
+                        TryAttack();
+
+                    }
                 }
 
                 //muffinMan.SetMove(canMove);
 
-                if (attackDelay >= 50)
+                /*if (attackDelay >= 50)
                 {
                     attackDelay = 0;
-                    //muffinMan.Attack();
-
-                    //if (GetComponent<IEnemy>().Health > 0)
-                    //{
                     TryAttack();
-                    //}
-                    // else
-                    //{
-                    //    canMove = false;
-                    //}
-                }
+                    
+                }*/
 
             }
         }
@@ -128,15 +132,17 @@ public class EnemyAI : MonoBehaviour, ITestEventSystem {
                 if (enemyName == "MuffinMan")
                 {
                     muffinMan.GetComponent<MuffinMan>().Attack();
+                    hitColliders[i].GetComponent<IPlayer>().TakeDamage(5);
                 }
                 else if (enemyName == "Jack")
                 {
                     jack.GetComponent<Jack>().Attack();
+                    hitColliders[i].GetComponent<IPlayer>().TakeDamage(10);
                 }
                 
                 //muffinMan.GetComponent<MuffinMan>().Attack();
 
-                hitColliders [i].GetComponent<IPlayer>().TakeDamage (5);
+                //hitColliders [i].GetComponent<IPlayer>().TakeDamage (5);
                 //Debug.Log (hitColliders [i].GetComponent<IPlayer> ().Health);
 			} 
 			i++;

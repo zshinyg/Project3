@@ -147,7 +147,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0040e1372cf43468a8868aa1426d9306, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemies: []
   Invinc: 0
   InvincDur: 0
   Icount: 0
@@ -155,6 +154,7 @@ MonoBehaviour:
   AttakDur: 0
   Acount: 0
   maxHealth: 100
+  playerName: 
 --- !u!212 &212625362339612522
 SpriteRenderer:
   m_ObjectHideFlags: 1

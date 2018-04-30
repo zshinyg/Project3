@@ -7,8 +7,7 @@ using UnityEngine.UI;
 
 public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
 {
-	public GameObject[] Enemies;
-	public  static int Health;
+	public static int Health;
     public bool Invinc;
     public int InvincDur;
     public int Icount;
@@ -18,8 +17,11 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
 	Image healthBar;
 	public int maxHealth = 100;
 
-
     private Animator animator;
+    public string playerName;
+
+    private GameObject myPlayer;
+
 
     public void Start()
 	{
@@ -34,13 +36,27 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
 		healthBar = GetComponent<Image> ();
 		Health = maxHealth;
 
+        myPlayer = GameObject.FindGameObjectWithTag("Player");
+        
+        Debug.Log(myPlayer.name);
+        playerName = myPlayer.name;
+
     }
 
 	public void TakeDamage (int damageTaken)
     {
         if (!Invinc)
         {
-            animator.SetTrigger("Player1_Hurt");
+            if (playerName == "Gingy(Clone)")
+            {
+                animator.SetTrigger("Player1_Hurt");
+            }
+            else if (playerName == "ShadowGingy(Clone)")
+            {
+                animator.SetTrigger("Player2_Hurt");
+            }
+
+            //animator.SetTrigger("Player1_Hurt");
             Health = Health - damageTaken;
             Debug.Log("My Health:"+Health);
             if (isDead())
@@ -53,7 +69,6 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
 
 	public void Attack()
 	{
-		//Enemies = GameObject.FindGameObjectsWithTag ("Enemies");
 		Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 0.5f);
 		int i = 0;
 		while (i < hitColliders.Length)
@@ -136,9 +151,17 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
 
 	public void Die ()
     {
-        animator.Play("Player1_Dead", 0, 0.9f);
+        if (playerName == "Gingy(Clone)")
+        {
+            animator.Play("Player1_Dead", 0, 0.9f);
+        }
+        else if (playerName == "ShadowGingy(Clone)")
+        {
+            animator.Play("Player1_Dead", 0, 0.9f);
+        }
+
+        //animator.Play("Player1_Dead", 0, 0.9f);
         ExecuteEvents.Execute<IGameEventSystem>(GameObject.Find("GameManager"), null, (x, y) => x.GameOver());
-        //animator.enabled = false;
         //Destroy (this.gameObject);
     }
     void OnTriggerEnter2D(Collider2D other)
@@ -154,7 +177,7 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
 
     void FixedUpdate()
     {
-		healthBar.fillAmount = Health / maxHealth;
+        healthBar.fillAmount = Health / maxHealth;
         if (getIDuration() > 0)
         {
             if (Icount <= getIDuration())

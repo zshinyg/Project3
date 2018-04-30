@@ -66,11 +66,11 @@ public class Jack : IEnemy
         {
             animator.SetTrigger("JackRight");
         }
-        else if ((current.y < (target.y - 0.5f)) && (Math.Abs(delta.x) < Math.Abs(delta.y)))
+        else if ((current.y < (target.y - 0.6f)) && (Math.Abs(delta.x) < Math.Abs(delta.y)))
         {
             animator.SetTrigger("JackUp");
         }
-        else if ((current.y > (target.y + 0.5f)) && (Math.Abs(delta.x) < Math.Abs(delta.y)))
+        else if ((current.y > (target.y + 0.6f)) && (Math.Abs(delta.x) < Math.Abs(delta.y)))
         {
             animator.SetTrigger("JackDown");
         }
