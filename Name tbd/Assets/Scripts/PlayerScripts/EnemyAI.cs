@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour {
+public class EnemyAI : MonoBehaviour, ITestEventSystem {
 
 	public GameObject Player;					// Player object from heirarchy
 	private Transform playerPos;				// Player position
@@ -68,7 +68,7 @@ public class EnemyAI : MonoBehaviour {
             {
                 if (Math.Abs(delta.magnitude) < 1)
                 {
-                    ToggleMove();
+                    canMove = true;
                 }
             }
 
@@ -144,7 +144,9 @@ public class EnemyAI : MonoBehaviour {
 	}
 
 
-	public void ToggleMove(){
-		canMove = !canMove;
-	}
+    public void StartTest()
+    {
+        canMove = true;
+    }
+
 }
