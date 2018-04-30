@@ -29,7 +29,7 @@ GameObject:
   - component: {fileID: 114596331944891430}
   - component: {fileID: 114959482898654482}
   - component: {fileID: 82826031623372354}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: Gingy
   m_TagString: Player
   m_Icon: {fileID: 0}

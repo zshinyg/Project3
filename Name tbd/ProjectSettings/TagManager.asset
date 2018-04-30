@@ -23,9 +23,9 @@ TagManager:
   - BlockingLayer
   - 
   - 
-  - 
   - Character
   - Item
+  - Spawner
   - Wall
   - Floor
   - 

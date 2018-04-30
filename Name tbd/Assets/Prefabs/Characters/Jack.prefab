@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114442585329923066}
   - component: {fileID: 114065018523739388}
   - component: {fileID: 114892090873148514}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: Jack
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 100
+  enemyName: 
 --- !u!114 &114442585329923066
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -132,6 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
+  enemyName: 
 --- !u!114 &114892090873148514
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -144,6 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 100
+  enemyName: 
   Health: 0
   current: {x: 0, y: 0, z: 0}
   target: {x: 0, y: 0, z: 0}

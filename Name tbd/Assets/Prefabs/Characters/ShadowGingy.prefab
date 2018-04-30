@@ -28,7 +28,7 @@ GameObject:
   - component: {fileID: 114245457492567888}
   - component: {fileID: 114977855933909496}
   - component: {fileID: 114484032468491240}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: ShadowGingy
   m_TagString: Player
   m_Icon: {fileID: 0}

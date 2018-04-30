@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114549650355644734}
   - component: {fileID: 114920846944159660}
   - component: {fileID: 114804710452451246}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: MuffinMan
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
+  enemyName: 
 --- !u!114 &114804710452451246
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -132,6 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 100
+  enemyName: 
   Health: 100
   current: {x: 0, y: 0, z: 0}
   target: {x: 0, y: 0, z: 0}
@@ -147,6 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 100
+  enemyName: 
 --- !u!212 &212235387157422154
 SpriteRenderer:
   m_ObjectHideFlags: 1

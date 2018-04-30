@@ -61,3 +61,13 @@ MonoBehaviour:
   - {fileID: 1167533357879140, guid: 194672f58467f284a8144083702ff71f, type: 2}
   - {fileID: 1370360375825598, guid: d5f5736f252bd8645b8c66195e7e4831, type: 2}
   - {fileID: 1966537469418650, guid: 5e212f64b8df35c4ca1a809718253f23, type: 2}
+  muffinManSpawner: {fileID: 1398377167259364, guid: e09f3a68831b8ec4da17a408357f51dd,
+    type: 2}
+  jackSpawner: {fileID: 1018120877245158, guid: 1c7603e1b2de1e24899c609f7e708970,
+    type: 2}
+  healthItemSpawner: {fileID: 1020361258752054, guid: 329faf3742659044cbe09c9b483676ee,
+    type: 2}
+  invincibleItemSpawner: {fileID: 1672590314137590, guid: 4eeae11a0a4d0334382a286ce3a110e5,
+    type: 2}
+  attackItemSpawner: {fileID: 1900269977389424, guid: 236c03ee73ebf1f48a1bc66dea85fc31,
+    type: 2}

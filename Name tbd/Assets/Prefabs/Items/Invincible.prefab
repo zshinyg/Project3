@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 61044265118535570}
   - component: {fileID: 50915065208627026}
   - component: {fileID: 114564880561449282}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: Invincible
   m_TagString: Item
   m_Icon: {fileID: 0}
