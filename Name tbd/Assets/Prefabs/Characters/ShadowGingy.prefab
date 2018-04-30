@@ -116,6 +116,7 @@ MonoBehaviour:
   Attak: 0
   AttakDur: 0
   Acount: 0
+  playerName: 
   Health: 100
 --- !u!114 &114327301467995020
 MonoBehaviour:
@@ -176,6 +177,7 @@ MonoBehaviour:
   Attak: 0
   AttakDur: 0
   Acount: 0
+  playerName: 
 --- !u!212 &212625362339612522
 SpriteRenderer:
   m_ObjectHideFlags: 1

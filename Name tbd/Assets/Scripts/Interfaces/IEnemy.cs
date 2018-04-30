@@ -14,11 +14,12 @@ public class IEnemy : MonoBehaviour, ICharacter
     private Animator animator;
     public string enemyName;
 
+    private Rigidbody2D thisEnemy;
+
     void Start()
     {
+        thisEnemy = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        //muffinMan = this.GetComponent<MuffinMan>();
-        //jack = this.GetComponent<Jack>();
 
         IEnemy[] scripts = this.GetComponents<IEnemy>();
 
@@ -27,13 +28,16 @@ public class IEnemy : MonoBehaviour, ICharacter
             Debug.Log(ie.GetType().Name);
             enemyName = ie.GetType().Name;
         }
-    }
 
-    //public void SetMove(bool value)
-    //{
-    //    muffinMan.SetMove(value);
-    //    jack.SetMove(value);
-    //}
+        if (enemyName == "MuffinMan")
+        {
+            Health = 100;
+        }
+        else if (enemyName == "Jack")
+        {
+            Health = 200;
+        }
+    }
 
     public void TakeDamage(int damageTaken)
     {
@@ -93,10 +97,10 @@ public class IEnemy : MonoBehaviour, ICharacter
                 animator.SetTrigger("Jack_Dead");
             }
             doOnce = 1;
-            //Destroy(GetComponent<BoxCollider2D>());
         }
         //Destroy (this.gameObject);
         Destroy(GetComponent<BoxCollider2D>());
+        thisEnemy.AddForce(-thisEnemy.velocity);
     }
 
 

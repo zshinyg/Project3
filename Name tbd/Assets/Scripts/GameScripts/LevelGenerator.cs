@@ -15,12 +15,13 @@ namespace Completed
         public int numItems;
         public GameObject[] Items;
         public Vector3 playerPos;
-        public GameObject Enemy;
+        public GameObject Enemy1;
+        public GameObject Enemy2;
         public List<Vector3> enemyPositions;
 
         public int numEnemies;
 
-
+        public int myLevel;
 
         /* moveNextPos
          * @param Vector3 nextPos, Direction nextDir (enum)
@@ -101,6 +102,8 @@ namespace Completed
          */
         public void SetupScene(int level, GameObject Player)
         {
+            myLevel = level;
+
             int columns = (int)(0.5 * level) + 5;
             int rows = (int)(0.5 * level) + 5;
             if (level >= 50)
@@ -181,14 +184,29 @@ namespace Completed
             Vector3 enemyPos;
             GameObject toInstantiate;
 
-            for (int i = 0; i < numberOfEnemies; i++)
+            if (myLevel % 5 == 0)
             {
-                toInstantiate = Enemy;
-                enemyPos = map.floorPositions[Random.Range(0, map.floorPositions.Count)];
-                GameObject instance = Instantiate(toInstantiate, enemyPos, Quaternion.identity) as GameObject;
-                instance.transform.SetParent(map.GetBoardHolder());
-                map.gridPositions.Remove(enemyPos);
-                enemyPositions.Add(enemyPos);
+                for (int i = 0; i < myLevel/5; i++)
+                {
+                    toInstantiate = Enemy2;
+                    enemyPos = map.floorPositions[Random.Range(0, map.floorPositions.Count)];
+                    GameObject instance = Instantiate(toInstantiate, enemyPos, Quaternion.identity) as GameObject;
+                    instance.transform.SetParent(map.GetBoardHolder());
+                    map.gridPositions.Remove(enemyPos);
+                    enemyPositions.Add(enemyPos);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < numberOfEnemies; i++)
+                {
+                    toInstantiate = Enemy1;
+                    enemyPos = map.floorPositions[Random.Range(0, map.floorPositions.Count)];
+                    GameObject instance = Instantiate(toInstantiate, enemyPos, Quaternion.identity) as GameObject;
+                    instance.transform.SetParent(map.GetBoardHolder());
+                    map.gridPositions.Remove(enemyPos);
+                    enemyPositions.Add(enemyPos);
+                }
             }
         }
 

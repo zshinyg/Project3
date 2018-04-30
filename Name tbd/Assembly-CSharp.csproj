@@ -65,6 +65,7 @@
      <Compile Include="Assets\Scripts\Interfaces\IGameEventSystem.cs" />
      <Compile Include="Assets\Scripts\Interfaces\IItem.cs" />
      <Compile Include="Assets\Scripts\Interfaces\IPlayer.cs" />
+     <Compile Include="Assets\Scripts\Interfaces\ITestEventSystem.cs" />
      <Compile Include="Assets\Scripts\Items\attackItem.cs" />
      <Compile Include="Assets\Scripts\Items\healthItem.cs" />
      <Compile Include="Assets\Scripts\Items\invincibilityItem.cs" />
@@ -83,6 +84,7 @@
      <Compile Include="Assets\Scripts\PlayerScripts\Player2Controller.cs" />
      <Compile Include="Assets\Scripts\PlayerScripts\ShadowGingy.cs" />
      <Compile Include="Assets\Scripts\PlayerSelector.cs" />
+     <Compile Include="Assets\Scripts\SpawnerScripts\AttackItemSpawner.cs" />
      <Compile Include="Assets\Scripts\TestScripts\TestLevel.cs" />
      <Compile Include="Assets\Scripts\TestScripts\TestLoader.cs" />
      <Compile Include="Assets\Scripts\TestScripts\TestManager.cs" />
