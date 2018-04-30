@@ -137,7 +137,7 @@ public class EnemyAI : MonoBehaviour, ITestEventSystem {
                 //muffinMan.GetComponent<MuffinMan>().Attack();
 
                 hitColliders [i].GetComponent<IPlayer>().TakeDamage (5);
-                Debug.Log (hitColliders [i].GetComponent<IPlayer> ().Health);
+                //Debug.Log (hitColliders [i].GetComponent<IPlayer> ().Health);
 			} 
 			i++;
 		}

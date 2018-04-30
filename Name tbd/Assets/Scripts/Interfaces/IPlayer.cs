@@ -3,24 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
 {
 	public GameObject[] Enemies;
-
-	public int Health;
-
+	public  static int Health;
     public bool Invinc;
-
     public int InvincDur;
-
     public int Icount;
-
     public int Attak;
-
     public int AttakDur;
-
     public int Acount;
+	Image healthBar;
+	public int maxHealth = 100;
+
 
     private Animator animator;
 
@@ -34,6 +31,9 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
         setIDuration(0);
         Icount = 0;
         Acount = 0;
+		healthBar = GetComponent<Image> ();
+		Health = maxHealth;
+
     }
 
 	public void TakeDamage (int damageTaken)
@@ -154,6 +154,7 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
 
     void FixedUpdate()
     {
+		healthBar.fillAmount = Health / maxHealth;
         if (getIDuration() > 0)
         {
             if (Icount <= getIDuration())
