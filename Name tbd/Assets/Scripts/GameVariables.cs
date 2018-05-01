@@ -7,6 +7,7 @@ public static class GameVariables {
     private static string characterName;
     private static int levelReached;
     private static float levelDuration;
+    private static string playerName;
 
     public static string CharacterName
     {
@@ -41,6 +42,19 @@ public static class GameVariables {
         set
         {
             levelDuration = value;
+        }
+    }
+
+
+    public static string PlayerName
+    {
+        get
+        {
+            return playerName;
+        }
+        set
+        {
+            playerName = value;
         }
     }
 

@@ -23,3 +23,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/PlayerSelector.unity
     guid: 86756124d7ff5cf438ede4af1c77bf8b
+  - enabled: 1
+    path: Assets/InputName.unity
+    guid: d317ee47719096a4895aa18e08045e0e
