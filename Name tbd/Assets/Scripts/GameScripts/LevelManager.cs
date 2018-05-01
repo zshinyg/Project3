@@ -35,7 +35,7 @@ public class LevelManager : MonoBehaviour, IEventSystemHandler
          */
     public void startLevel(int level, GameObject character)
     {
-       
+        GameVariables.LevelDuration = 0;
         mainCharacter = character;
         levelGenerator.SetupScene(level, mainCharacter);
     
@@ -94,6 +94,7 @@ public class LevelManager : MonoBehaviour, IEventSystemHandler
                 Invoke("NextLevel", 1);
             }
         }
+        GameVariables.LevelDuration += .02;
         
     }
 

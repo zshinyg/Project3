@@ -7,6 +7,12 @@ public static class SaveLoad {
 
     public static List<string> leaderboard;
 
+
+    /* Save
+     * @param List<string>
+     * @return none
+     * Takes in a list of strings with values to write to file
+     */
     public static void Save(List<string> stats)
     {
         try
@@ -23,9 +29,15 @@ public static class SaveLoad {
 
     }
 
+
+    /* Load
+     * @param none
+     * @return List<string>
+     * Reads a file, makes it a list of strings and returns that list
+     */
     public static List<string> Load()
     {
-        leaderboard.Clear();
+
         try
         {
             StreamReader file = new StreamReader(Application.persistentDataPath + "/leaderboard.txt");

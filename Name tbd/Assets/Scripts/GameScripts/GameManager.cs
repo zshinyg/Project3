@@ -172,6 +172,7 @@ public class GameManager : MonoBehaviour , IGameEventSystem
          */
     public void GameOver()
     {
+        GameVariables.LevelReached = level;
         Destroy(gameObject);
         SceneManager.LoadScene("GameOver");
     }
