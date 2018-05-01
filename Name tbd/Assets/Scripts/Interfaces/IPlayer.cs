@@ -14,7 +14,6 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
     public int Attak;
     public int AttakDur;
     public int Acount;
-	Image healthBar;
 	public int maxHealth = 100;
 
     private Animator animator;
@@ -33,9 +32,6 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
         setIDuration(0);
         Icount = 0;
         Acount = 0;
-		healthBar = GetComponent<Image> ();
-		Health = maxHealth;
-
         myPlayer = GameObject.FindGameObjectWithTag("Player");
         
         Debug.Log(myPlayer.name);
@@ -58,6 +54,7 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
 
             //animator.SetTrigger("Player1_Hurt");
             Health = Health - damageTaken;
+			HealthBarScript.health -= damageTaken;
             Debug.Log("My Health:"+Health);
             if (isDead())
             {
@@ -182,7 +179,7 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
 
     void FixedUpdate()
     {
-        if (healthBar != null) healthBar.fillAmount = Health / maxHealth;
+
 
         if (getIDuration() > 0)
         {
