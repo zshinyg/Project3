@@ -160,10 +160,15 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
             animator.Play("Player1_Dead", 0, 0.9f);
         }
 
-        //animator.Play("Player1_Dead", 0, 0.9f);
-        ExecuteEvents.Execute<IGameEventSystem>(GameObject.Find("GameManager"), null, (x, y) => x.GameOver());
-        //Destroy (this.gameObject);
+        if (GameObject.Find("GameManager"))
+            ExecuteEvents.Execute<IGameEventSystem>(GameObject.Find("GameManager"), null, (x, y) => x.GameOver());
+        else
+            ExecuteEvents.Execute<ITestEventSystem>(GameObject.Find("TestManager"), null, (x, y) => x.EndTest());
+        
     }
+
+
+
     void OnTriggerEnter2D(Collider2D other)
     {
         //Check the provided Collider2D parameter other to see if it is tagged "PickUp", if it is...
@@ -177,7 +182,8 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
 
     void FixedUpdate()
     {
-        healthBar.fillAmount = Health / maxHealth;
+        if (healthBar != null) healthBar.fillAmount = Health / maxHealth;
+
         if (getIDuration() > 0)
         {
             if (Icount <= getIDuration())

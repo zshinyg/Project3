@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4119614276776536}
   - component: {fileID: 212633581064740544}
   - component: {fileID: 61834874566108522}
+  - component: {fileID: 114719791048857262}
   m_Layer: 13
   m_Name: AttackItemSpawner
   m_TagString: Untagged
@@ -66,6 +67,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.52, y: 0.33}
   m_EdgeRadius: 0
+--- !u!114 &114719791048857262
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1900269977389424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6516088f38701c341884afca0a78c08e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackItem: {fileID: 1221809986104870, guid: 9663bcd5e274d43739a6258a28714b4f, type: 2}
 --- !u!212 &212633581064740544
 SpriteRenderer:
   m_ObjectHideFlags: 1

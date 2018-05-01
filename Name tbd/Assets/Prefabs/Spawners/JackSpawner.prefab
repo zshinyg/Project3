@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4752041386329792}
   - component: {fileID: 212600280667089788}
   - component: {fileID: 61895618785734786}
+  - component: {fileID: 114037605658494038}
   m_Layer: 13
   m_Name: JackSpawner
   m_TagString: Untagged
@@ -66,6 +67,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.33, y: 0.27}
   m_EdgeRadius: 0
+--- !u!114 &114037605658494038
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1018120877245158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4f7a1cd9c3bdb94faa367c5228fc670, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jack: {fileID: 1626278639558132, guid: cad614535a351c4459e175ea6ec9e927, type: 2}
 --- !u!212 &212600280667089788
 SpriteRenderer:
   m_ObjectHideFlags: 1

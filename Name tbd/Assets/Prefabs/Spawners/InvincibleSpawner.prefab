@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4474868289152256}
   - component: {fileID: 212624273494193590}
   - component: {fileID: 61743556318871992}
+  - component: {fileID: 114475174880647878}
   m_Layer: 13
   m_Name: InvincibleSpawner
   m_TagString: Untagged
@@ -66,6 +67,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.43, y: 0.43}
   m_EdgeRadius: 0
+--- !u!114 &114475174880647878
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1672590314137590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b49376f53ab76d346be3bb8411e3b5fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invincibleItem: {fileID: 1196637864205324, guid: 4662eb74b54e64158ba800f2d13b569f,
+    type: 2}
 --- !u!212 &212624273494193590
 SpriteRenderer:
   m_ObjectHideFlags: 1

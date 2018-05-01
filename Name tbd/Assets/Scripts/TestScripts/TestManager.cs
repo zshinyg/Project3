@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class TestManager : MonoBehaviour {
+public class TestManager : MonoBehaviour, ITestEventSystem {
 
     public TestLevel testLevel;
     public GameObject mainCharacter;
@@ -16,7 +16,7 @@ public class TestManager : MonoBehaviour {
      */
     void Awake()
     {
-        StartTest();
+        BeginTest();
     }
 
 
@@ -25,7 +25,7 @@ public class TestManager : MonoBehaviour {
      * @return none
      * Sets up board, spawns player, and starts the test level
      */
-    private void StartTest()
+    private void BeginTest()
     {
         if (!(GameObject.Find("TestLevel")))
         {
@@ -48,4 +48,15 @@ public class TestManager : MonoBehaviour {
         mainCharacter = Instantiate(mainCharacter) as GameObject;
         testLevel.PlacePlayer(mainCharacter);
     }
+
+    public void EndTest()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    /*
+     * Null Method used to fulfill ITestEventSystem
+     * 
+     */
+    public void StartTest() { }
 }

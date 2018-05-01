@@ -18,15 +18,14 @@ public class EnemyAI : MonoBehaviour, ITestEventSystem {
     IEnemy myEnemy;
     
 
-    /* Start
+    /* Awake
      * @param none
      * @return none
      * Called to start the script and initializes canMove to false
      */
-    void Start()
+    void Awake()
     {
 		canMove = false;
-        //Debug.Log ("Started");
         attackDelay = 0;
 
         IEnemy[] scripts = this.GetComponents<IEnemy>();
@@ -58,13 +57,15 @@ public class EnemyAI : MonoBehaviour, ITestEventSystem {
 	**/
     void FixedUpdate()
     {
-        if (GetComponent<IEnemy>().Health > 0)
+
+        if (GetComponent<IEnemy>().Health > 0)                                  // Health is greater than 0 so continue
         {
             attackDelay++;
             Player = GameObject.FindGameObjectWithTag("Player");
             playerPos = Player.transform;
             delta = playerPos.position - this.transform.position;
-            if (!canMove)
+
+            if (!canMove)                                                       // Player is not allowed to move so check if the player is close enouggh
             {
                 if (Math.Abs(delta.magnitude) < 1)
                 {
@@ -72,7 +73,7 @@ public class EnemyAI : MonoBehaviour, ITestEventSystem {
                 }
             }
 
-            else
+            else                                                                // Player allowed to move so move it
             {
                 this.transform.position += delta * moveSpeed * Time.deltaTime;
 
@@ -152,7 +153,12 @@ public class EnemyAI : MonoBehaviour, ITestEventSystem {
 
     public void StartTest()
     {
-        canMove = true;
+        Debug.Log("Recieved message");
+        this.canMove = true;
     }
 
+    public void EndTest()
+    {
+   
+    }
 }

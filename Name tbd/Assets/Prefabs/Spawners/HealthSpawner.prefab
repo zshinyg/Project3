@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4051329126662046}
   - component: {fileID: 212119869380566594}
   - component: {fileID: 61099754964879922}
+  - component: {fileID: 114803105558726550}
   m_Layer: 13
   m_Name: HealthSpawner
   m_TagString: Untagged
@@ -66,6 +67,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.33}
   m_EdgeRadius: 0
+--- !u!114 &114803105558726550
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1020361258752054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd2e954cee829fa469954444940a064b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthItem: {fileID: 1251640448650908, guid: 953dd6894a87d4b70909036f31928d54, type: 2}
 --- !u!212 &212119869380566594
 SpriteRenderer:
   m_ObjectHideFlags: 1

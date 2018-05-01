@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class TestLevel : MonoBehaviour {
 
@@ -28,7 +29,7 @@ public class TestLevel : MonoBehaviour {
      * @return none
      * In Charge building and setting up the test level
      */
-	public void BuildTestLevel()
+    public void BuildTestLevel()
     {
         FloorSetup();
         PlaceSpawners();
@@ -70,19 +71,19 @@ public class TestLevel : MonoBehaviour {
      * @return none
      * Places the mainCharacter in the bottom left hand corner
      */
-     public void PlacePlayer(GameObject mainCharacter)
+    public void PlacePlayer(GameObject mainCharacter)
     {
         mainCharacter.transform.SetParent(boardHolder);
         mainCharacter.transform.position = new Vector3(1f, 1f, 0f);
     }
 
 
-    /*
-     * 
-     * 
-     * 
+    /* PlaceSpawners
+     * @param none
+     * @return none
+     * Places the spawners in the central area of the map
      */
-     public void PlaceSpawners()
+    public void PlaceSpawners()
     {
         muffinManSpawnerPos = new Vector3(numCols / 3, numRows / 3, 0f);
         jackSpawnerPos = new Vector3(2 * numCols / 3, numRows / 3, 0f);
@@ -96,6 +97,28 @@ public class TestLevel : MonoBehaviour {
         healthItemSpawner = Instantiate(healthItemSpawner, healthItemSpawnerPos, Quaternion.identity);
         invincibleItemSpawner = Instantiate(invincibleItemSpawner, invincibleItemSpawnerPos, Quaternion.identity);
         attackItemSpawner = Instantiate(attackItemSpawner, attackItemSpawnerPos, Quaternion.identity);
+
+    }
+
+    
+    /*  SpawnObject
+     * @param GameObject 
+     * @return none
+     * Spawns GameObject passed in to a random spot in the map
+     */
+     public void SpawnObject(GameObject obj)
+    {
+        Debug.Log("Should be spawning: " + obj);
+        int col = Random.Range(1, numCols - 1);
+        int row = Random.Range(1, numRows - 1);
+        obj = Instantiate(obj, new Vector3(col, row, 0f), Quaternion.identity);
+
+        if (obj.tag == "Enemy")
+        {
+            Debug.Log("Should be broadcasting method");
+
+            obj.BroadcastMessage("StartTest");
+        }
 
     }
 }

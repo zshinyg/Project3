@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4841239934382430}
   - component: {fileID: 212294516806413552}
   - component: {fileID: 61993110585265068}
+  - component: {fileID: 114544787807445924}
   m_Layer: 13
   m_Name: MuffinManSpawner
   m_TagString: Untagged
@@ -66,6 +67,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.34, y: 0.39}
   m_EdgeRadius: 0
+--- !u!114 &114544787807445924
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1398377167259364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44e5da96780093743b47df6066c4ed30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  muffinMan: {fileID: 1987323495637506, guid: b77332dd23eee47138177fb882d69750, type: 2}
 --- !u!212 &212294516806413552
 SpriteRenderer:
   m_ObjectHideFlags: 1
