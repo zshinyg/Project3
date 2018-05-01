@@ -86,6 +86,7 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
 
 	public void setHealth(int health)
     {
+		HealthBarScript.health = health;
         Health = health;
         Debug.Log("Health:"+Health);
 	}

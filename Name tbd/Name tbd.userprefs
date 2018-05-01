@@ -1,18 +1,9 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/HealthBarScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Interfaces/IPlayer.cs">
     <Files>
-      <File FileName="Assets/Scripts/PlayerScripts/Gingy.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Interfaces/IEnemy.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Interfaces/ICharacter.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Interfaces/IPlayer.cs" Line="41" Column="1" />
-      <File FileName="Assets/Standard Assets/CrossPlatformInput/Scripts/ButtonHandler.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/PlayerScripts/Player1Controller.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/PlayerScripts/MuffinMan_EnemyAI.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/PlayerScripts/MuffinMan.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/GameScripts/LevelManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/GameScripts/GameManager.cs" Line="78" Column="23" />
-      <File FileName="Assets/HealthBarScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Interfaces/IPlayer.cs" Line="89" Column="35" />
+      <File FileName="Assets/Scripts/GameScripts/HealthBarScript.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
