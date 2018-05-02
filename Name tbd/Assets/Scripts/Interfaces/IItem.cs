@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IItem {
+public interface IItem
+{
 
 	void Ability (IPlayer player);
 
-	int Duration();
+	void Duration(IPlayer player);
 
 }
 

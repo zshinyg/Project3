@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1023997260867310}
+  m_IsPrefabParent: 1
+--- !u!1 &1023997260867310
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4417344888149752}
+  - component: {fileID: 114135656581529748}
+  m_Layer: 0
+  m_Name: TestLevel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4417344888149752
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1023997260867310}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 46.513607, y: 145.45828, z: 5.916986}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114135656581529748
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1023997260867310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62c308b7fcc45fe488c948ecf120f97e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wallTiles:
+  - {fileID: 1284887012009292, guid: 297919966a7784246850ee7e5ec1d5a8, type: 2}
+  - {fileID: 1783557990174050, guid: 1ce4e437991e05640ae1720e2b63c7e4, type: 2}
+  - {fileID: 1824160688335246, guid: 92a60df3223c76d4180069c0ada61127, type: 2}
+  - {fileID: 1070334545308700, guid: 19719f3ff167ad548843c5bc6928c2ab, type: 2}
+  floorTiles:
+  - {fileID: 1672464603766966, guid: 41a3cad2550f16f43855377854a98a6f, type: 2}
+  - {fileID: 1167533357879140, guid: 194672f58467f284a8144083702ff71f, type: 2}
+  - {fileID: 1370360375825598, guid: d5f5736f252bd8645b8c66195e7e4831, type: 2}
+  - {fileID: 1966537469418650, guid: 5e212f64b8df35c4ca1a809718253f23, type: 2}
+  muffinManSpawner: {fileID: 1398377167259364, guid: e09f3a68831b8ec4da17a408357f51dd,
+    type: 2}
+  jackSpawner: {fileID: 1018120877245158, guid: 1c7603e1b2de1e24899c609f7e708970,
+    type: 2}
+  healthItemSpawner: {fileID: 1020361258752054, guid: 329faf3742659044cbe09c9b483676ee,
+    type: 2}
+  invincibleItemSpawner: {fileID: 1672590314137590, guid: 4eeae11a0a4d0334382a286ce3a110e5,
+    type: 2}
+  attackItemSpawner: {fileID: 1900269977389424, guid: 236c03ee73ebf1f48a1bc66dea85fc31,
+    type: 2}
