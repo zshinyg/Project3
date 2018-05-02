@@ -132,6 +132,8 @@ public class GameManager : MonoBehaviour , IGameEventSystem
         enemyText.text = "Enemies: " + levelManager.getNumEnemies();
     }
 
+    
+
     /* InitGame
          * @param none
          * @return none

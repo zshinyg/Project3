@@ -20,6 +20,10 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
     public string playerName;
 
     private GameObject myPlayer;
+    private GameObject invincImage;
+    private Text invincText;
+    private GameObject AttackBonusImage;
+    private Text AttackBonusText;
 
 
     public void Start()
@@ -80,7 +84,31 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
 		}
 	}
 
-	public void setSpeed (int speed)
+    void ShowInvinc()
+    {
+        invincImage = GameObject.Find("InvincibilityImage");
+        invincText = GameObject.Find("InvincibilityText").GetComponent<Text>();
+        invincText.text = "Invincible!";
+    }
+
+    void HideInvinc()
+    {
+        invincImage.SetActive(false);
+    }
+
+    void ShowAttackBonus()
+    {
+        AttackBonusImage = GameObject.Find("AttackBonusImage");
+        AttackBonusText = GameObject.Find("AttackBonusText").GetComponent<Text>();
+        AttackBonusText.text = "Attack Bonus!";
+    }
+
+    void HideAttackBonus()
+    {
+        AttackBonusImage.SetActive(false);
+    }
+
+    public void setSpeed (int speed)
     {
 	}
 
@@ -100,6 +128,14 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
     {
         Attak = attack;
         Debug.Log("Attack:"+Attak);
+        if(Attak > 20)
+        {
+            ShowAttackBonus();
+        }
+        else
+        {
+            HideAttackBonus();
+        }
     }
 
     public int getAttack()
@@ -111,6 +147,14 @@ public class IPlayer: MonoBehaviour, ICharacter, IEventSystemHandler
     {
         Invinc = invinc;
         Debug.Log("Invincible:"+ Invinc);
+        if (Invinc)
+        {
+            ShowInvinc();
+        }
+        else
+        {
+            HideInvinc();
+        }
     }
 
     public void setIDuration(int dur)
