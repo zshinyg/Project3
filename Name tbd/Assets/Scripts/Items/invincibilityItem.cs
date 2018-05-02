@@ -3,23 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class invincibilityItem : MonoBehaviour, IItem 
+public class invincibilityItem : IItem 
 {
 
     private int durationLength;
 
     public void Ability(IPlayer player){
         changeInviciblity(player);
-        Duration(player);
     }
 
-    public void Duration(IPlayer player){
+    public int Duration(){
         durationLength = Random.Range(1,3);
         durationLength = durationLength * 10;
-        player.setIDuration(durationLength);
+        return durationLength;
     }
 
     private void changeInviciblity(IPlayer player){
-        player.setInvincibility(true);
+        //player.setInvincibility(true);
     }
 }

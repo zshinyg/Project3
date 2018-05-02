@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 
-public class healthItem : MonoBehaviour, IItem
+public class healthItem : IItem
 {
 
     private int changeToHealth;
@@ -13,8 +13,8 @@ public class healthItem : MonoBehaviour, IItem
           changeHealth(player);
     }
 
-    public void Duration(IPlayer player){
-     
+    public int Duration(){
+        return 0;
     }
 
     private void changeHealth(IPlayer player){
@@ -25,6 +25,6 @@ public class healthItem : MonoBehaviour, IItem
         }
 
         changeToHealth = changeToHealth*10;
-		player.setHealth(player.getHealth() + changeToHealth);
+		//player.setHealth(player.getHealth() + changeToHealth);
     }
 }

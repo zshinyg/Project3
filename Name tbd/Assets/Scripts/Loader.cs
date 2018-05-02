@@ -9,11 +9,11 @@ public class Loader : MonoBehaviour
     void Awake()
     {
         //Check if a GameManager has already been assigned to static variable GameManager.instance or if it's still null
-        //if (!(GameObject.Find("GameManager")))
-        //{
-        //    Instantiate(gameManager);
-        //}
+        if (!(GameObject.Find("GameManager")))
+        {
+            Instantiate(gameManager);
+        }
 
-        gameManager = GetComponent<GameManager>();
+        //  gameManager = GetComponent<GameManager>();
     }
 }
